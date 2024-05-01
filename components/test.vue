@@ -4,5 +4,8 @@
   </div>
 </template>
 <script setup lang="ts">
-  console.log('header')
+  // console.log('header')
 </script>
+<style lang="less">
+@import "../assets/css/test";
+</style>

@@ -1,19 +1,5 @@
-
 <template>
-  <div>aa</div>
-  <Test></Test>
-  <div>
-    <img src="/img/test.png" alt="for test" />
-    <pre>{{data}}</pre>
-  </div>
-
+  <NuxtLayout>
+    <NuxtPage />
+  </NuxtLayout>
 </template>
-<script setup lang="ts">
-import Test from "~/components/test.vue";
-import {test} from "~/assets/js/utils"
-const { data } = await useFetch('/api/hello')
-test()
-</script>
-<style lang="less">
-
-</style>

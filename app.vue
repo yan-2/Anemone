@@ -10,6 +10,10 @@
 </template>
 <script setup lang="ts">
 import Test from "~/components/test.vue";
-
+import {test} from "~/assets/js/utils"
 const { data } = await useFetch('/api/hello')
+test()
 </script>
+<style lang="less">
+
+</style>

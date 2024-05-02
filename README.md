@@ -11,8 +11,13 @@ npm install
 ## Development Server
 Start the development server on `http://localhost:3000`:
 
+## JS syntax check
 ```bash
-npm run dev
+// check
+npm run lint
+
+// automatically fix
+npm run lint:fix
 ```
 ## Dirs
 + pages/ for vue pages
@@ -24,3 +29,16 @@ npm run dev
 ## Rules
 + Please make commits to dev branch first.
 + Don't make commits to main branch.
+
+## Naming convention
+Camel case for JS
+```bash
+let helloWorld = 'hello word'
+```
+CSS rules is a little bit different:
+```bash
+.hello-world {
+    background:black
+}
+```
+

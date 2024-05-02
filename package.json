@@ -19,8 +19,10 @@
   },
   "devDependencies": {
     "@nuxt/eslint": "^0.3.10",
+    "@nuxtjs/stylelint-module": "^5.2.0",
     "eslint": "^8.57.0",
     "less": "^4.2.0",
+    "stylelint": "^16.4.0",
     "vite-plugin-eslint2": "^4.4.0"
   }
 }

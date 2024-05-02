@@ -7,7 +7,9 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "dependencies": {
     "@nuxtjs/supabase": "^1.2.1",
@@ -16,6 +18,9 @@
     "vue-router": "^4.3.0"
   },
   "devDependencies": {
-    "less": "^4.2.0"
+    "@nuxt/eslint": "^0.3.10",
+    "eslint": "^8.57.0",
+    "less": "^4.2.0",
+    "vite-plugin-eslint2": "^4.4.0"
   }
 }

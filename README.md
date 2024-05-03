@@ -17,7 +17,7 @@ You can start the development server on [localhost](http://localhost:3000)
 npm run dev
 URL : http://localhost:3000
 ```
-‼️ Please **push your commits** on the `dev` branch first and not directly on the `main` one
+‼️ Please **push** your commits on the `dev` branch first and not directly on the `main` one
 
 Here are listed the main folders of our project with their meaning
 |**Folder** 📁|**Content** 🔦|
@@ -27,12 +27,27 @@ Here are listed the main folders of our project with their meaning
 |`assets/css`|Common CSS files|
 |`assets/js`|Common JS files|
 |`public/img`|Images|
+|`public/fonts`|Fonts|
 
+### Syntax ✏️
+We've opted to embrace the CamelCase convention for our syntax
+```bash
+let helloWorld = 'hello word'
+```
+In order to **check** the JS syntax you can run the command `npm run lint` and to automatically fix it use `npm run lint:fix` instead.
+
+
+CSS adopts a slightly different notation
+```bash
+.hello-world {
+    background:black
+}
+```
 ## Documentation 
 To ensure better organization our documentation is stored in a separate [repository](https://github.com/AstroWLAN/HypermediaReports) 
 |**Document** 📄|**Link** 🌍|
 |:--|:--|
-|Usability Report||
+|Usability Report|[Download](https://github.com/AstroWLAN/HypermediaReports/blob/main/Deliverables/usabReport.pdf)|
 |Design Document||
 |Technical Report||
 

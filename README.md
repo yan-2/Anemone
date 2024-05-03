@@ -1,17 +1,23 @@
-## technology stack 
-+ nuxt3.js (based on Vue3 )
-+ Less.css for post css handler
-+ boostrap.css for adaptive screens
-+ Supabase as DB
-+ Vercel as cloud service
-## install
+## Technologies
+For this project we used the following technology stack
+|**Tech** 🤖|**Description** 📗|
+|:--|:--|
+|`nuxt3.js` _based on Vue3_|Frontend|
+|`less.css`|Post CSS handler|
+|`bootstrap.css`|Adaptive screens|
+|`Supabase`|Database|
+|`Vercel`|Cloud services|
+
+### Setup and Rules ⚙️
 ```bash
 npm install
 ```
-## Development Server
-Start the development server on `http://localhost:3000`:
-
-## JS syntax check
+You can start the development server on [localhost](http://localhost:3000)
+```bash
+npm run dev
+URL : http://localhost:3000
+```
+### JS syntax check
 ```bash
 // check
 npm run lint
@@ -19,26 +25,47 @@ npm run lint
 // automatically fix
 npm run lint:fix
 ```
-## Dirs
-+ pages/ for vue pages
-+ components/ for vue components
-+ assets/css for common css files
-+ assets/js for common js files
-+ public/img for images
+‼️ Please **push** your commits on the `dev` branch first and not directly on the `main` one
 
-## Rules
-+ Please make commits to dev branch first.
-+ Don't make commits to main branch.
+Here are listed the main folders of our project with their meaning
+|**Folder** 📁|**Content** 🔦|
+|:--|:--|
+|`pages/`|Vue pages|
+|`components/`|Vue components|
+|`assets/css`|Common CSS files|
+|`assets/js`|Common JS files|
+|`public/img`|Images|
+|`public/fonts`|Fonts|
 
-## Naming convention
-Camel case for JS
+### Syntax ✏️
+We've opted to embrace the CamelCase convention for our syntax
 ```bash
 let helloWorld = 'hello word'
 ```
-CSS rules is a little bit different:
+In order to **check** the JS syntax you can run the command `npm run lint` and to automatically fix it use `npm run lint:fix` instead.
+
+
+CSS adopts a slightly different notation
 ```bash
 .hello-world {
     background:black
 }
 ```
+## Documentation 
+To ensure better organization our documentation is stored in a separate [repository](https://github.com/AstroWLAN/HypermediaReports) 
+|**Document** 📄|**Link** 🌍|
+|:--|:--|
+|Usability Report|[Download](https://github.com/AstroWLAN/HypermediaReports/blob/main/Deliverables/usabReport.pdf)|
+|Design Document||
+|Technical Report||
+
+## Team 
+Our team called **Javascream** is composed of the following individuals
+|**Member** 👤|**Mail** 📨|**ID** 🏷️|
+|:--|:--|:--|
+|Crippa Dario|dario2.crippa@mail.polimi.it|10529288|
+|Foley Harry|harry.foley@mail.polimi.it|10864980|
+|Ghane Sanaz|sanaz.ghane@mail.polimi.it|10817676|
+|Zhuang Yan|yan.zhuang@mail.polimi.it|10869697|
+
 

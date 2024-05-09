@@ -59,6 +59,13 @@ To ensure better organization our documentation is stored in a separate [reposit
 |Design Document||
 |Technical Report||
 
+## Design
+The website has been prototyped with Figma and it is accessible using the following links
+|**Resource** 📐|**Link** 🌍|
+|:--|:--|
+|Mockup|[Link](https://www.figma.com/file/0BaFygvmWB5BEwICrq9pA3/Anemone-%F0%9F%8C%B7?type=design&node-id=0%3A1&mode=design&t=5cInuBHNcoYcq0rS-1)|
+|Wireframe|[Link](https://www.figma.com/file/yLjtIXZv19NJfXIqvPG2Qj/Anemone-Wireframe?type=design&mode=design&t=TVFg81ycUs28ytmG-1)|
+
 ## Team 
 Our team called **Javascream** is composed of the following individuals
 |**Member** 👤|**Mail** 📨|**ID** 🏷️|

@@ -7,12 +7,6 @@ export default defineNuxtConfig({
     // '@nuxtjs/stylelint-module',
     '@nuxt/eslint',
   ],
-  supabase: {
-    url: process.env.SUPABASE_URL,
-    key: process.env.SUPABASE_KEY,
-    redirect: false,
-    // Options
-  },
   css: [
     '~/assets/css/reset.css',
   ],

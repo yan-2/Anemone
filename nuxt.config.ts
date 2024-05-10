@@ -9,6 +9,8 @@ export default defineNuxtConfig({
   ],
   css: [
     '~/assets/css/reset.css',
+    '~/assets/css/foundations.less',
+    '~/assets/css/fonts.less',
   ],
   eslint: {
     // checker: true, // <---

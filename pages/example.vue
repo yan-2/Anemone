@@ -14,7 +14,7 @@
 import Test from '~/components/test.vue'
 import { test } from '~/assets/js/utils'
 
-const { data } = await useFetch('/api/hello')
+const { data } = await useFetch('/api/employee')
 test()
 </script>
 

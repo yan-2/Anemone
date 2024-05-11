@@ -9,6 +9,7 @@ export default defineNuxtConfig({
   ],
   css: [
     '~/assets/css/reset.css',
+    '~/assets/css/bootstrap-grid.min.css',
     '~/assets/css/foundations.less',
     '~/assets/css/fonts.less',
   ],

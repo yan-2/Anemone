@@ -1,34 +1,95 @@
-:root {
-    --primary-font: 'Roboto', sans-serif;
-    --primary-font-size: 11px;
-    --primary-font-color: #2F2E41;
-    --primary-font-weight: normal;
-
-    --primary-bold-font: 'Roboto Bold', sans-serif;
-
-    --headline-font: 'Rosamila', sans-serif;
-    --headline-font-size: 3.5em;
-    --headline-font-color: #2F2E41;
-
-    --background-color: #EDEDED;
-}
+// VARIABLES
+// Colors
+@backgroundColor: #DEDEDE;
+@actionColor: #D16464;
+@accentColor: #8185E7;
+@primaryColor: #2F2E41;
+@secondaryColor: #8A88A0;
+@neutralColor: #FFFFFF;
 
 html {
-    font-family: var(--primary-font);
-    font-size: var(--primary-font-size);
-    color: var(--primary-font-color);
+    // Box model
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    // Typography
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    color: @primaryColor;
 }
 
 body {
-    background-color: var(--background-color);
-}
-
-b {
-    font-family: var(--primary-bold-font);
+    // Background
+    background-color: @backgroundColor;
 }
 
 h1 {
-    font-family: var(--headline-font);
-    font-size: var(--headline-font-size);
-    color: var(--headline-font-color);
+    //Typography
+    font-family: 'Rosamila', sans-serif;
+    font-size: 3.5rem;
 }
+
+.subtitle {
+    //Typography
+    color: @secondaryColor;
+    padding-bottom: 20px;
+}
+
+.zStack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#logoBackground {
+    top: 0px;
+    position: absolute;
+    z-index: 0;
+}
+
+#splashInfo {
+    top: 228px;
+    z-index: 1;
+}
+
+#logo {
+    top: 10px;
+    position: absolute;
+    z-index: 2;
+}
+
+.container {
+    max-width: 500px;
+    padding: 0 20px;
+    box-sizing: border-box;
+    position: absolute;
+    z-index: 1;
+}
+
+.box {
+    background-color: @neutralColor;
+    padding: 26px;
+    border: 1px solid @primaryColor;
+    text-align: center;
+}
+
+.boxElement {
+    padding-bottom: 20px;
+}
+
+.actionButton {
+    background-color: @actionColor;
+    color: @neutralColor;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.actionButton:hover {
+    opacity: 0.8;
+}
+

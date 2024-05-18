@@ -19,5 +19,16 @@ export default defineNuxtConfig({
         config: {
             stylistic: true, // <---
         },
+
     },
+    hooks: {
+        'pages:extend'(pages) {
+            // home route
+            pages.push({
+                name: 'home',
+                path: '',
+                file: '~/pages/home.vue'
+            })
+        }
+    }
 })

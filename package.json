@@ -25,6 +25,7 @@
     "bootstrap-vue-next": "^0.17.6",
     "eslint": "^8.57.0",
     "less": "^4.2.0",
+    "sass": "^1.77.2",
     "stylelint": "^16.4.0",
     "vite-plugin-eslint2": "^4.4.0"
   }

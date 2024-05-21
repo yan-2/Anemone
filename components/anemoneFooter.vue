@@ -74,7 +74,10 @@ ul li {
 
 ul li:hover {
   cursor: pointer;
-  color: @hightlightColor;
+  //color: @hightlightColor;
+  a{
+    color: #8A88A0;
+  }
 }
 
 svg {

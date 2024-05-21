@@ -31,7 +31,7 @@ export default {
 <template>
   <nav>
     <!-- Organization Logo • Shortcut to home -->
-    <nuxt-link to="\">
+    <nuxt-link to="/">
       <svg width="57" height="24" viewBox="0 0 57 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M19.423 13.877C19.423 19.2405 15.075 23.5885 9.7115 23.5885C4.34799 23.5885 0 19.2405 0 13.877C0 8.51351 4.34799 4.16553 9.7115 4.16553C15.075 4.16553 19.423 8.51351 19.423 13.877Z" fill="#2F2E41"/>
         <path d="M40.1802 14C40.1802 14 24.7259 13.5611 26.2916 0L40.1802 14Z" fill="#2F2E41"/>

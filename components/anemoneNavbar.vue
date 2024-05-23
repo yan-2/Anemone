@@ -49,19 +49,19 @@ export default {
         </li>
 
         <li>
-          <a href="#">Center</a>
+          <nuxt-link to="/center">Center</nuxt-link>
         </li>
 
         <li>
-          <a href="#">Projects</a>
+          <nuxt-link to="/projects">Projects</nuxt-link>
         </li>
 
         <li>
-          <a href="#">Services</a>
+          <nuxt-link to="/services">Services</nuxt-link>
         </li>
 
         <li>
-          <a href="#">People</a>
+          <nuxt-link to="/people">People</nuxt-link>
         </li>
       </ul>
 

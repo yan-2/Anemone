@@ -9,7 +9,7 @@ export default {
     <!-- Contacts page anchor -->
     <ul>
       <li>
-        <nuxt-link to="#">
+        <nuxt-link to="/contacts">
           Contacts
         </nuxt-link>
       </li>
@@ -33,7 +33,7 @@ export default {
       </li>
       <!-- FAQ anchor -->
       <li>
-        <nuxt-link to="#">
+        <nuxt-link to="faq">
           FAQ
         </nuxt-link>
       </li>

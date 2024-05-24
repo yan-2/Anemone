@@ -21,12 +21,15 @@
     "@bootstrap-vue-next/nuxt": "^0.17.6",
     "@nuxt/eslint": "^0.3.10",
     "@nuxtjs/stylelint-module": "^5.2.0",
+    "autoprefixer": "^10.4.19",
     "bootstrap": "^5.3.3",
     "bootstrap-vue-next": "^0.17.6",
     "eslint": "^8.57.0",
     "less": "^4.2.0",
+    "postcss": "^8.4.38",
     "sass": "^1.77.2",
     "stylelint": "^16.4.0",
+    "tailwindcss": "^3.4.3",
     "vite-plugin-eslint2": "^4.4.0"
   }
 }

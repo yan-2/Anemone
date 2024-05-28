@@ -10,7 +10,7 @@
 
 <script setup lang="ts">
 // Imports components and variables
-import {BACKGROUND_COLOR} from '~/assets/js/constants.js'
+import { BACKGROUND_COLOR } from '~/assets/js/constants.js'
 import AnemoneFooter from '~/components/anemoneFooter.vue'
 import AnemoneNavbar from '~/components/anemoneNavbar.vue'
 

@@ -92,6 +92,7 @@ export default { name: 'AnemoneNavbar' }
   height: 100%;
   fill: none;
   stroke-width: 1.5;
+  stroke: @primaryColor;
 }
 
 .anemoneNavbar path {

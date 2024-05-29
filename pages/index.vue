@@ -21,20 +21,19 @@
   </div>
 </template>
 
-<script>
+<script lang="ts" setup>
 import { BACKGROUND_COLOR } from '~/assets/js/constants.js'
 import AnemoneFooter from '~/components/anemoneFooter.vue'
 import AnemoneNavbar from '~/components/anemoneNavbar.vue'
 
-export default {
-  components: {
-    AnemoneNavbar,
-    AnemoneFooter,
-  },
-  mounted() {
+useHead({
+  title: 'Home',
+})
+
+onMounted(() => {
     document.body.style.backgroundColor = BACKGROUND_COLOR
-  },
-}
+    useHead({title: 'Home',})
+})
 </script>
 
 <style scoped lang="less">

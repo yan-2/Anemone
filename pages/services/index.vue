@@ -32,7 +32,6 @@ const fetchServices = async () => {
   const { data } = await useFetch<{ data: Service[] }>('/api/service');
   if (data.value) {
     services.value = data.value.data;
-    console.log(services.value)
   }
 };
 

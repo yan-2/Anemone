@@ -33,7 +33,6 @@ const fetchEmployees = async () => {
   const { data } = await useFetch<{ data: Employee[] }>('/api/employee');
   if (data.value) {
     employees.value = data.value.data;
-    console.log(employees.value)
   }
 };
 

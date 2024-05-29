@@ -30,7 +30,6 @@ const fetchProjects = async () => {
   const { data } = await useFetch<{ data: Project[] }>('/api/project');
   if (data.value) {
     projects.value = data.value.data;
-    console.log(projects.value)
   }
 };
 

@@ -1,12 +1,9 @@
 <template>
     <div>
       <AnemoneNavbar />
-      <div v-if="service">
-        <p>{{ service.name }}</p>
-        <p>{{ service.description }}</p>
-        <p>{{ service.availability }}</p>
-        <p>{{ service.testimonial }}</p>
-
+      <div v-if="project">
+        <p>{{ project.name }}</p>
+        <p>{{ project.description }}</p>
       </div>
       <div v-else>
         <p>Loading...</p>
@@ -22,32 +19,30 @@
   import AnemoneNavbar from '~/components/anemoneNavbar.vue';
   
   useHead({
-    title: 'service',
+    title: 'project',
   });
   
   const route = useRoute();
   const id = parseInt(route.params.id as string, 10);
   
-  interface Service {
+  interface Project {
   id: number;
   name: string;
   description: string;
-  availability: string;
-  testimonial: string;
 }
   
-  const services = ref<Service[]>([]);
+  const projects = ref<Project[]>([]);
   
-  const fetchServices = async () => {
-    const { data } = await useFetch<{ data: Service[] }>('/api/service');
+  const fetchProjects = async () => {
+    const { data } = await useFetch<{ data: Project[] }>('/api/project');
     if (data.value) {
-      services.value = data.value.data;
+      projects.value = data.value.data;
     }
   };
   
-  onMounted(fetchServices);
+  onMounted(fetchProjects);
   
-  const service = computed(() => services.value.find(e => e.id === id));
+  const project = computed(() => projects.value.find(e => e.id === id));
   
   </script>
   

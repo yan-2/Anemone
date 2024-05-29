@@ -9,7 +9,7 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
   ],
   css: [
-    '~/assets/css/boostrap_reset.scss',
+    '~/assets/css/boostrap.scss',
     '~/assets/css/reset.css',
     '~/assets/css/foundations.less',
     '~/assets/css/fonts.less',

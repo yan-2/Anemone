@@ -1,5 +1,5 @@
 <template>
-  <div class="foundation">
+  <div class="foundation app">
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
@@ -17,3 +17,8 @@ useHead({
   ],
 })
 </script>
+<style scoped lang="less">
+.app{
+  padding: 0 0 0 20px;
+}
+</style>

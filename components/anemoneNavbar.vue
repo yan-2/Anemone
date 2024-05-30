@@ -121,14 +121,6 @@
     padding: 13px;
   }
 
-  #nav-check {
-    background-color: #000;
-  }
-
-  .nav-container > .nav-btn > label:hover, .nav-container #nav-check:checked ~ .nav-btn > label {
-    background-color: rgba(0, 0, 0, 0.6);
-  }
-
   .nav-container > .nav-btn > label > span {
     display: block;
     width: 25px;
@@ -137,6 +129,7 @@
   }
 
   .nav-container > .nav-links {
+    z-index: 10;
     position: absolute;
     display: block;
     width: 100%;
@@ -146,6 +139,9 @@
     overflow-y: hidden;
     top: 50px;
     left: 0px;
+    color: #000;
+    background: @backgroundColor;
+
   }
 
   .nav-container > .nav-links > a {

@@ -4,12 +4,9 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   ssr: true,
   modules: [
-    '@bootstrap-vue-next/nuxt',
-    // '@nuxtjs/stylelint-module',
     '@nuxt/eslint',
   ],
   css: [
-    '~/assets/css/boostrap.scss',
     '~/assets/css/reset.css',
     '~/assets/css/foundations.less',
     '~/assets/css/fonts.less',

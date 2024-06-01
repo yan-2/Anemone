@@ -1,10 +1,13 @@
-import { DB } from '../utility'
+import {DB} from '../utility'
 
 export default defineEventHandler
-(async (
-) => {
-  const resp = await DB.from('project').select('*')
-  return {
-    data: resp.data,
-  }
+(async (event) => {
+    const {id} = getQuery(event)
+    const query = DB.from('project').select('*')
+
+    if (id) {
+        query.eq('id', id)
+    }
+    const resp = await query
+    return {data: resp.data}
 })

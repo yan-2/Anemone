@@ -1,5 +1,5 @@
 <template>
-  <div class="nav-container clearfix">
+  <header class="nav-container clearfix">
     <input type="checkbox" id="nav-check">
     <div class="nav-header">
     </div>
@@ -43,7 +43,7 @@
         People
       </RouterLink>
     </div>
-  </div>
+  </header>
 </template>
 <style scoped lang="less">
 @import "@/assets/css/variables.less";

@@ -1,7 +1,7 @@
 <template>
   <AnemoneNavbar />
-
-  <div class="tw-flex tw-flex-col tw-justify-center tw-items-center tw-my-5">
+  <div v-if="Loading">loading</div>
+  <div v-else class="tw-flex tw-flex-col tw-justify-center tw-items-center tw-my-5">
     <div class="tw-text-center tw-mb-10">
       <h1 class="tw-text-5xl tw-font-black Font-titr tw-mb-2">Projects</h1>
       <h2 class="tw-text-gray-400">How we make the difference</h2>
@@ -39,7 +39,7 @@
           <!-- carousel card section  -->
           <div class="tw-inline-flex" v-for="card in cards" :key="card.id">
             <div
-              class="tw-card tw-flex tw-flex-col tw-flex-wrap tw-items-center tw-justify-between tw-mr-10 tw-self-stretch tw-w-[45vh] tw-h-[75vh] tw-pb-5 tw-pt-10 tw-px-10 tw-border tw-border-solid tw-border-stone-900 max-sm:tw-w-[26vh] max-sm:tw-px-0 max-sm:tw-h-[50vh] max-sm:tw-mr-12"
+              class="tw-card tw-flex tw-flex-col tw-flex-wrap tw-items-center tw-justify-between tw-mr-10 tw-self-stretch tw-w-[45vh] tw-pb-5 tw-pt-10 tw-px-10 tw-border tw-border-solid tw-border-stone-900 max-sm:tw-w-[26vh] max-sm:tw-px-0 max-sm:tw-h-[50vh] max-sm:tw-mr-12"
             >
               <div
                 class="tw-w-full tw-self-center tw-break-words tw-whitespace-normal tw-mb-10 max-sm:tw-w-[24vh] max-sm:tw-mx-2 max-sm:tw-text-xs sm:tw-text-xs"
@@ -57,9 +57,9 @@
                 alt="#"
                 src="/img/Hero.png"
               />
-              <nuxt-link 
-                :to="`/projects/${card.id}`" 
-                class="tw-bg-violet-500 tw-text-white tw-text-md tw-px-16 tw-py-2 max-sm:tw-px-5"
+              <nuxt-link
+                :to="`/projects/${card.id}`"
+                class="tw-bg-violet-500 tw-mt-5 tw-text-white tw-text-md tw-px-16 tw-py-2 max-sm:tw-px-5"
               >
                 Discover
               </nuxt-link>
@@ -116,14 +116,18 @@ const innerStyles = ref({});
 let step = "";
 let transitioning = false;
 let currentIndex = ref(0);
+let Loading = ref(false)
 
 //carousel slide
 let cards = [];
 let project = [];
 
+
 //Fetch slide data
-project = await useFetch("/api/project");
-cards = project.data.value.data;
+  project = await useFetch("/api/project");
+  cards = project.data.value.data;
+  Loading.value = false;
+
 
 // call this function before run
 onMounted(() => {

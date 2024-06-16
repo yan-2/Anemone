@@ -1,48 +1,78 @@
 <template>
-    <div>
-      <AnemoneNavbar />
-      <div v-if="project">
-        <p>{{ project.name }}</p>
-        <p>{{ project.description }}</p>
-      </div>
-      <div v-else>
-        <p>Loading...</p>
-      </div>
-      <AnemoneFooter />
+  <div>
+    <AnemoneNavbar />
+    <!-- Loading -->
+    <div
+      class="w-full h-full tw-flex tw-justify-center tw-items-center"
+      v-if="Loading"
+    >
+      <img src="/img/Loading.svg" alt="" />
     </div>
-  </template>
-    
-  <script setup lang="ts">
-  import { ref, computed, onMounted } from 'vue';
-  import { useRoute } from 'vue-router';
-  import AnemoneFooter from '~/components/anemoneFooter.vue';
-  import AnemoneNavbar from '~/components/anemoneNavbar.vue';
-  
-  useHead({
-    title: 'project',
-  });
-  
-  const route = useRoute();
-  const id = parseInt(route.params.id as string, 10);
-  
-  interface Project {
-  id: number;
-  name: string;
-  description: string;
+
+    <div v-else class="tw-flex tw-justify-center tw-mt-5">
+      <div
+        class="tw-flex tw-flex-col tw-items-center tw-w-5/6 tw-p-12 tw-border tw-border-solid tw-border-stone-900"
+      >
+        <!-- project Title -->
+        <div class="tw-text-center tw-mb-4">
+          <h1 class="Font-titr tw-font-semibold tw-text-5xl">
+            {{ project.name }}
+          </h1>
+          <h2 class="tw-text-gray-400">{{ project.tag }}</h2>
+        </div>
+
+
+<!-- project Description -->
+        <div class="tw-flex tw-flex-col tw-items-center lg:tw-flex-row">
+          <div class="tw-w-3/4">
+            <h1 class="tw-font-bold tw-mb-2">Description</h1>
+            <p>{{ project.description }}</p>
+          </div>
+
+
+          <!-- project image -->
+          <img
+            class="tw-w-2/3 tw-mt-7 lg:tw-w-1/3"
+            src="/img/Hero.png"
+            alt=""
+          />
+        </div>
+      </div>
+    </div>
+
+    <AnemoneFooter />
+  </div>
+</template>
+
+<script setup>
+import AnemoneFooter from "~/components/anemoneFooter.vue";
+import AnemoneNavbar from "~/components/anemoneNavbar.vue";
+// Page title 
+useHead({
+  title: "project",
+});
+
+// Variables
+let Loading = ref(true);
+const route = useRoute();
+let project = " ";
+
+// data fetching
+const fatchData = async () => {
+  const projects = await useFetch("/api/project");
+  project = projects.data.value.data[route.params.id - 1];
+  Loading.value = false;
+};
+
+// call data fetch function
+fatchData();
+</script>
+<style scoped>
+/* Fonts */
+* {
+  font-family: "Roboto";
 }
-  
-  const projects = ref<Project[]>([]);
-  
-  const fetchProjects = async () => {
-    const { data } = await useFetch<{ data: Project[] }>('/api/project');
-    if (data.value) {
-      projects.value = data.value.data;
-    }
-  };
-  
-  onMounted(fetchProjects);
-  
-  const project = computed(() => projects.value.find(e => e.id === id));
-  
-  </script>
-  
+.Font-titr {
+  font-family: "Rosamila";
+}
+</style>

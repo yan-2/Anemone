@@ -7,6 +7,7 @@
 </template>
 <script setup lang="ts">
 useHead({
+  // title: 'My App',
   titleTemplate: '%s - Anemone',
   meta: [
     {name: 'description', content: 'Join us in our mission to empower women or let us help you.'},

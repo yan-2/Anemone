@@ -15,9 +15,7 @@ export default defineNuxtConfig({
   },
   css: [
     '~/assets/css/reset.css',
-    '~/assets/css/foundations.less',
-    '~/assets/css/fonts.less',
-    '~/assets/css/main.css',
+    '~/assets/css/tailwind.less',
   ],
   eslint: {
     // checker: true, // <---

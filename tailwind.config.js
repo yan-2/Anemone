@@ -12,18 +12,22 @@ module.exports = {
     extend: {},
     // Anemone color palette
     colors: {
-      'background': '#EDEDED',
-      'primary': '#2F2E41',
-      'secondary': '#8A88A0',
-      'action': '#D16464',
-      'accent': '#8185E7',
-      'neutral': '#FFFFFF',
-      'hyperlinks': '#649DD1',
+      background: '#EDEDED',
+      primary: '#2F2E41',
+      secondary: '#8A88A0',
+      action: '#D16464',
+      accent: '#8185E7',
+      neutral: '#FFFFFF',
+      hyperlinks: '#649DD1',
     },
     // Anemone font families
     fontFamily: {
-      'roboto': ['Roboto Mono', 'monospace'],
-      'rosamila': ['Rosamila', 'sans-serif'],
+      roboto: ['Roboto Mono', 'monospace'],
+      rosamila: ['Rosamila', 'sans-serif'],
+    },
+    fontSize: {
+      base: '0.85rem',
+      big: '2.5rem',
     },
   },
   plugins: [],

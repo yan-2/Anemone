@@ -1,35 +1,35 @@
 <template>
-  <nav class="fixed w-full z-20 top-0 start-0 bg-white">
+  <nav class="relative w-full z-20">
     <div class="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-8 lg:px-10">
-      <div class="flex items-center justify-between py-4 md:py-5">
+      <div class="flex items-center justify-between h-16">
         <!-- Logo : come back to homepage -->
         <NuxtLink
-            to="/"
-            class="flex items-center space-x-3 rtl:space-x-reverse"
+          to="/"
+          class="flex items-center space-x-3 rtl:space-x-reverse"
         >
           <svg
-              class="w-12 h-8"
-              viewBox="0 0 57 24"
-              fill="none"
+            class="w-12 h-8"
+            viewBox="0 0 57 24"
+            fill="none"
           >
             <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M19.3588 15C18.8021 19.8345 14.6952 23.5885 9.7115 23.5885C4.34799 23.5885 0 19.2405 0 13.877C0 8.51351 4.34799 4.16553 9.7115 4.16553C14.7794 4.16553 18.9406 8.04744 19.3839 13L34.9084 13C30.5948 11.5851 25.3472 8.17951 26.2916 0L39.1881 13L56.1802 13V15L19.3588 15Z"
-                fill="#2F2E41"
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M19.3588 15C18.8021 19.8345 14.6952 23.5885 9.7115 23.5885C4.34799 23.5885 0 19.2405 0 13.877C0 8.51351 4.34799 4.16553 9.7115 4.16553C14.7794 4.16553 18.9406 8.04744 19.3839 13L34.9084 13C30.5948 11.5851 25.3472 8.17951 26.2916 0L39.1881 13L56.1802 13V15L19.3588 15Z"
+              fill="#2F2E41"
             />
           </svg>
         </NuxtLink>
         <div class="md:hidden">
           <button
-              type="button"
-              class="inline-flex items-center p-1 w-8 h-8 justify-center text-sm text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none"
-              :aria-expanded="isMenuOpen.toString()"
-              @click="toggleMenu"
+            type="button"
+            class="inline-flex items-center p-1 w-8 h-8 justify-center text-sm text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none"
+            :aria-expanded="isMenuOpen.toString()"
+            @click="toggleMenu"
           >
             <div
-                class="hamburger-icon"
-                :class="{ open: isMenuOpen }"
+              class="hamburger-icon"
+              :class="{ open: isMenuOpen }"
             >
               <span />
               <span />
@@ -39,19 +39,19 @@
         <div class="hidden md:flex md:items-center">
           <ul class="flex space-x-8 font-roboto text-base text-secondary">
             <li
-                v-for="(item, index) in menuItems"
-                :key="index"
-                class="hover:text-primary"
+              v-for="(item, index) in menuItems"
+              :key="index"
+              class="hover:text-primary"
             >
               <NuxtLink
-                  :to="item.href"
-                  :class="[
+                :to="item.href"
+                :class="[
                   'block py-2',
                   isActiveRoute(item.href)
                     ? 'text-primary font-bold'
                     : 'text-gray-600 hover:text-gray-900',
                 ]"
-                  :aria-current="isActiveRoute(item.href) ? 'page' : undefined"
+                :aria-current="isActiveRoute(item.href) ? 'page' : undefined"
               >
                 {{ item.text }}
               </NuxtLink>
@@ -62,12 +62,11 @@
     </div>
     <!-- Mobile menu, show/hide based on menu state -->
     <div
-        v-show="isMenuOpen"
-        class="md:hidden fixed inset-0 z-10 bg-white"
-        style="top: 64px;" <!-- Adjust this value based on your navbar height -->
+      v-show="isMenuOpen"
+      class="md:hidden absolute w-full bg-white"
     >
-    <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-      <NuxtLink
+      <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+        <NuxtLink
           v-for="(item, index) in menuItems"
           :key="index"
           :to="item.href"
@@ -79,10 +78,10 @@
           ]"
           :aria-current="isActiveRoute(item.href) ? 'page' : undefined"
           @click="closeMenu"
-      >
-        {{ item.text }}
-      </NuxtLink>
-    </div>
+        >
+          {{ item.text }}
+        </NuxtLink>
+      </div>
     </div>
   </nav>
 </template>
@@ -121,9 +120,9 @@ export default {
       menuItems,
       toggleMenu,
       closeMenu,
-      isActiveRoute
+      isActiveRoute,
     }
-  }
+  },
 }
 </script>
 

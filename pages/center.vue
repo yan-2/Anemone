@@ -63,7 +63,7 @@
         <div
           class="tw-flex tw-flex-col tw-w-full tw-border tw-border-solid lg:tw-w-1/3 lg:tw-h-full sm:tw-h-[30vh]"
         >
-        <Map/>
+        <map/>
         </div>
       </div>
     </div>
@@ -76,7 +76,7 @@
 <script setup lang="ts">
 import AnemoneFooter from "~/components/anemoneFooter.vue";
 import AnemoneNavbar from "~/components/anemoneNavbar.vue";
-import Map from "~/components/map.vue"
+import map from "~/components/map.vue"
 
 useHead({
   title: "Center",

@@ -109,6 +109,7 @@
 </template>
 
 <script setup>
+import { PRIMARY_COLOR, SECONDARY_COLOR, BACKGROUND_COLOR } from '~/assets/js/constants.js'
 import AnemoneFooter from "~/components/anemoneFooter.vue";
 import AnemoneNavbar from "~/components/anemoneNavbar.vue";
 
@@ -142,6 +143,7 @@ if (employee && employee.data) {
 }
 
 onMounted(() => {
+  document.body.style.backgroundColor = BACKGROUND_COLOR
   setStep();
   resetTranslate();
 });

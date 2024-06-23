@@ -1,5 +1,5 @@
 <template>
-  <div :class="backgroundClass" class="flex flex-col h-screen">
+  <div :class="backgroundClass" class="flex flex-col">
     <AnemoneNavbar class="h-16" />
     <NuxtLayout>
       <NuxtPage class="flex-grow" />

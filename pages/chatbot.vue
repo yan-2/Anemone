@@ -13,6 +13,7 @@
         </h1>
       </div>
       <div class="chatbotMessages">
+              <!-- messages from the converastion -->
         <div
           v-for="(message, index) in messages"
           :key="index"
@@ -71,11 +72,13 @@ export default {
           content: `Hello, I am a virtual counselling chatbot from Anemone. I am here to offer initial counselling to women. Our conversation is confidential, and I do not remember any personal details you share, such as names or locations. How may I assist you today?`,
         },
       ],
+      firstMessageSent: false, 
     }
   },
   mounted() {
     document.body.style.backgroundColor = PRIMARY_COLOR
 
+    // event listener for input text box interactions
     const inputDiv = document.querySelector('.chatbotInputBox .editableDiv')
     inputDiv.addEventListener('focus', this.hidePlaceholder)
     inputDiv.addEventListener('blur', this.showPlaceholder)
@@ -89,23 +92,26 @@ export default {
   },
   methods: {
     hidePlaceholder(event) {
+            // Hide placeholder text when focused
       const inputDiv = event.target
-      if (inputDiv.innerText.trim() === 'Message Anemone') {
+      if (inputDiv.innerText.trim() === 'Message Anemone' && !this.firstMessageSent) {
         inputDiv.innerText = ''
       }
       inputDiv.style.color = BACKGROUND_COLOR
     },
     showPlaceholder(event) {
+            // Show placeholder text when blurred
       const inputDiv = event.target
-      if (inputDiv.innerText.trim() === '') {
+      if (inputDiv.innerText.trim() === '' && !this.firstMessageSent) {
         inputDiv.style.color = SECONDARY_COLOR
         inputDiv.innerText = 'Message Anemone'
       }
       else {
-        inputDiv.style.color = PRIMARY_COLOR
+        inputDiv.style.color = SECONDARY_COLOR
       }
     },
     updateCharCount(event) {
+            // Update character count 
       const inputDiv = event.target
       if (inputDiv.innerText.length > this.charLimit) {
         inputDiv.innerText = inputDiv.innerText.substring(0, this.charLimit)
@@ -123,6 +129,27 @@ export default {
       }
       this.messages.push(userMessage)
 
+      const sampleMessages = [ // example messages for chatbot conditioning
+        {
+          role: 'user',
+          content: `I can't handle the pressure at home anymore.`,
+        },
+        {
+          role: 'assistant',
+          content: `I'm really sorry to hear that you're feeling so pressured. It's important to take moments for yourself when things get overwhelming. Would you like to discuss what’s been happening,
+          or perhaps I can suggest some ways to help you cope better?`,
+        },
+        {
+          role: 'user',
+          content: `I am thinking of leaving my husband.`,
+        },
+        {
+          role: 'assistant',
+          content: `It sounds like you are going through a lot right now. Leaving an abusive situation is a big step. Would you like to tell me what is happening? At Anemone we are here to support you in these tough times.`,
+        },
+      ]
+
+      // api call to set up chatbot
       fetch('https://api.openai.com/v1/chat/completions', {
         method: 'POST',
         headers: {
@@ -134,22 +161,23 @@ export default {
           messages: [
             {
               role: 'system',
-              content: `You are a chatbot from "Anemone" a women's rights refuge centre. You function as a psychological counsellor, offering initial counselling to women, who may be victims of abuse. Engage with users in a supportive, empathetic manner, recognizing the emotional weight of their inquiries. Keep your responses conversational and warm. All conversations are treated with strict confidentiality, filter out any personal information that you receive, for example, you cannot learn/remember details the user tells you such as names, locations, etc. Adhere to principles of psychological counseling in interactions, avoiding bias or judgment while providing supportive advice. Avoid giving the user long answers of information instead be more conversational`,
+              content: `You are a chatbot from "Anemone" a women's rights refuge centre. You function as a psychological counsellor, offering initial counselling to women, who may be victims of abuse. Engage in a supportive, empathetic manner. Recognise the emotional weight of their inquiries. Keep your responses conversational and warm. All conversations are treated with strict confidentiality, filter out any personal information that you receive, for example, you cannot remember details the user tells you such as names, locations, etc. Adhere to principles of psychological counseling in interactions, avoiding bias or judgment while providing supportive advice. Respond to the user by giving short answers, like a person would in conversation. Ask the users questions like a counsellor would. If this chatbot is confused or unsure it will apologise to the user and direct them to contact the centre for more information.`,
             },
+            ...sampleMessages,
             ...this.messages.slice(1),
           ],
           max_tokens: 150,
         }),
       })
         .then(response => response.json())
-        .then((data) => {
+        .then((data) => {   // parse response messages into an array we can display
           const botMessage = {
             role: 'assistant',
             content: data.choices[0].message.content.trim(),
           }
           this.messages.push(botMessage)
         })
-        .catch((error) => {
+        .catch((error) => {  // error handling for api response
           console.error('Error:', error)
           const errorMessage = {
             role: 'assistant',
@@ -158,12 +186,15 @@ export default {
           this.messages.push(errorMessage)
         })
 
-      inputDiv.innerText = 'Message Anemone'
+        // clear input box and char count
+      inputDiv.innerText = ''
       this.charCount = 0
+      this.firstMessageSent = true
     },
   },
 }
 </script>
+
 
 <style scoped lang="less">
 @import "@/assets/css/variables.less";

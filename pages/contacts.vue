@@ -1,11 +1,8 @@
-<script setup lang="ts">
-import AnemoneFooter from '~/components/AnemoneFooter.vue'
-</script>
-
 <template>
-  <AnemoneFooter />
+  <div></div>
 </template>
-
-<style scoped>
+<style>
 
 </style>
+<script setup lang="ts">
+</script>

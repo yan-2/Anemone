@@ -1,11 +1,8 @@
-<script setup lang="ts">
-import AnemoneNavbar from '~/components/AnemoneNavbar.vue'
-</script>
-
 <template>
-  <AnemoneNavbar />
+  <div></div>
 </template>
-
-<style scoped>
+<style>
 
 </style>
+<script setup lang="ts">
+</script>

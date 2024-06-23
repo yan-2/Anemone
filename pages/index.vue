@@ -5,7 +5,7 @@
           <img
             src="~/public/img/vectors/logoBackground.svg"
             alt="Background shape"
-            class="w-full md:w-3/4 lg:w-2/5 h-auto lg:-translate-y-36"
+            class="w-full md:w-3/4 lg:w-2/5 h-auto lg:-translate-y-36 rotate-6"
           >
         </div>
         <div class="flex flex-col items-center justify-center">
@@ -13,6 +13,7 @@
           <img
             src="~/public/img/vectors/logo.svg"
             alt="The website logo"
+            class="w-full md:w-3/4 lg:w-2/5 h-auto lg:translate-y-2 z-20"
           >
           <!-- Splash information box -->
           <div class="bg-neutral border border-primary p-6 max-w-2xl z-10">

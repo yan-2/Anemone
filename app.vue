@@ -1,18 +1,21 @@
 <template>
-  <div :class="backgroundClass" class="flex flex-col">
+  <div
+    :class="backgroundClass"
+    class="flex flex-col min-h-screen transition-colors duration-500 ease-in-out"
+  >
     <AnemoneNavbar class="h-16" />
     <NuxtLayout>
       <NuxtPage class="flex-grow" />
     </NuxtLayout>
-    <AnemoneFooter class="h-16"/>
+    <AnemoneFooter class="h-16" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
-import AnemoneNavbar from "~/components/AnemoneNavbar.vue";
-import AnemoneFooter from "~/components/AnemoneFooter.vue";
+import AnemoneNavbar from '~/components/AnemoneNavbar.vue'
+import AnemoneFooter from '~/components/AnemoneFooter.vue'
 
 useHead({
   titleTemplate: '%s - Anemone',
@@ -28,27 +31,10 @@ const route = useRoute()
 
 const backgroundClass = computed(() => {
   return route.path === '/assistant'
-    ? 'background-dark'
-    : 'background-light'
+    ? 'bg-dark-background text-dark-primary'
+    : 'bg-background text-primary'
 })
+
+// Provide the current theme to all components
+provide('currentTheme', computed(() => route.path === '/assistant' ? 'dark' : 'light'))
 </script>
-
-<style lang="less">
-html, body {
-  height: 100%;
-}
-
-#__nuxt {
-  height: 100%;
-}
-
-.background-dark {
-  background-color: #2F2E41;
-  min-height: 100vh;
-}
-
-.background-light {
-  background-color: #EDEDED;
-  min-height: 100vh;
-}
-</style>

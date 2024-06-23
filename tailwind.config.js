@@ -12,6 +12,7 @@ module.exports = {
     extend: {
       // Anemone color palette
       colors: {
+        // Website default theme
         background: '#EDEDED',
         primary: '#2F2E41',
         secondary: '#8A88A0',
@@ -19,6 +20,16 @@ module.exports = {
         accent: '#8185E7',
         neutral: '#FFFFFF',
         hyperlinks: '#649DD1',
+        // Assistant theme
+        dark: {
+          background: '#2F2E41',
+          primary: '#EDEDED',
+          secondary: '#8A88A0',
+          action: '#D16464',
+          accent: '#8185E7',
+          neutral: '#FFFFFF',
+          hyperlinks: '#649DD1',
+        },
       },
       // Anemone fonts
       fontFamily: {
@@ -32,6 +43,11 @@ module.exports = {
       // Custom translations
       translate: {
         2: '0.55rem',
+      },
+      transitionDuration: {
+        400: '400ms',
+        600: '600ms',
+        // Add any custom durations you need
       },
     },
   },

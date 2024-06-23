@@ -1,10 +1,19 @@
 <template>
-  <footer class="py-4 font-roboto text-secondary">
-    <div class="container mx-auto flex justify-center items-center space-x-6 text-gray-600">
+  <footer
+    :class="[
+      'py-4 font-roboto transition-colors duration-500 ease-in-out',
+      currentTheme === 'dark' ? 'bg-dark-background text-dark-secondary' : 'bg-background text-secondary',
+    ]"
+  >
+    <div class="container mx-auto flex justify-center items-center space-x-6">
       <NuxtLink
         to="/contacts"
-        class="hover:text-primary transition-colors duration-300"
-        :class="{ 'text-primary font-bold': $route.path === '/contacts' }"
+        :class="[
+          'transition-colors duration-500 ease-in-out',
+          isActiveRoute('/contacts')
+            ? currentTheme === 'dark' ? 'text-dark-primary font-bold' : 'text-primary font-bold'
+            : currentTheme === 'dark' ? 'text-dark-secondary hover:text-dark-primary' : 'text-secondary hover:text-primary',
+        ]"
       >
         Contacts
       </NuxtLink>
@@ -12,7 +21,10 @@
         href="https://instagram.com"
         target="_blank"
         rel="noopener noreferrer"
-        class="hover:text-primary transition-colors duration-300"
+        :class="[
+          'transition-colors duration-500 ease-in-out',
+          currentTheme === 'dark' ? 'text-dark-secondary hover:text-dark-primary' : 'text-secondary hover:text-primary',
+        ]"
       >
         <svg
           class="w-6 h-6"
@@ -31,7 +43,10 @@
         href="https://x.com/your_x_handle"
         target="_blank"
         rel="noopener noreferrer"
-        class="hover:text-primary transition-colors duration-300"
+        :class="[
+          'transition-colors duration-500 ease-in-out',
+          currentTheme === 'dark' ? 'text-dark-secondary hover:text-dark-primary' : 'text-secondary hover:text-primary',
+        ]"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -44,8 +59,12 @@
       </a>
       <NuxtLink
         to="/faq"
-        class="hover:text-primary transition-colors duration-300"
-        :class="{ 'text-primary font-bold': $route.path === '/faq' }"
+        :class="[
+          'transition-colors duration-500 ease-in-out',
+          isActiveRoute('/faq')
+            ? currentTheme === 'dark' ? 'text-dark-primary font-bold' : 'text-primary font-bold'
+            : currentTheme === 'dark' ? 'text-dark-secondary hover:text-dark-primary' : 'text-secondary hover:text-primary',
+        ]"
       >
         FAQ
       </NuxtLink>
@@ -53,10 +72,24 @@
   </footer>
 </template>
 
-<script setup lang="ts">
+<script lang="ts">
+import { defineComponent, inject, computed } from 'vue'
+import { useRoute } from 'vue-router'
 
+export default defineComponent({
+  name: 'AnemoneFooter',
+  setup() {
+    const route = useRoute()
+    const currentTheme = inject('currentTheme', computed(() => 'light'))
+
+    const isActiveRoute = (path: string) => {
+      return computed(() => route.path === path).value
+    }
+
+    return {
+      currentTheme,
+      isActiveRoute,
+    }
+  },
+})
 </script>
-
-<style scoped>
-
-</style>

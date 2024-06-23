@@ -1,14 +1,18 @@
 <template>
-  <div :class="backgroundClass">
+  <div :class="backgroundClass" class="flex flex-col h-screen">
+    <AnemoneNavbar />
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
+    <AnemoneFooter />
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
+import AnemoneNavbar from "~/components/AnemoneNavbar.vue";
+import AnemoneFooter from "~/components/AnemoneFooter.vue";
 
 useHead({
   titleTemplate: '%s - Anemone',

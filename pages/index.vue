@@ -1,9 +1,5 @@
 <template>
-  <div class="flex flex-col h-screen">
-    <!-- Navbar -->
-    <AnemoneNavbar />
-    <!-- Page Content -->
-    <div class="flex-grow flex justify-center items-center">
+  <div class="flex-grow flex justify-center items-center">
       <div class="relative max-w-full max-h-full grid-cols-1 grid-rows-1 justify-center items-center">
         <div class="absolute inset-0 z-0 flex items-center justify-center">
           <img
@@ -45,9 +41,6 @@
         </div>
       </div>
     </div>
-    <!-- Footer -->
-    <AnemoneFooter />
-  </div>
 </template>
 
 <script>

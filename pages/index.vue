@@ -1,22 +1,21 @@
 <template>
-  <div class="flex-grow flex justify-center items-center">
+  <div class="flex justify-center items-center">
       <div class="relative max-w-full max-h-full grid-cols-1 grid-rows-1 justify-center items-center">
         <div class="absolute inset-0 z-0 flex items-center justify-center">
           <img
             src="~/public/img/vectors/logoBackground.svg"
             alt="Background shape"
-            class="w-full md:w-3/4 lg:w-2/5 h-auto lg:-translate-y-36 rotate-6"
+            class="w-full md:w-3/4 lg:w-2/5 h-auto lg:-translate-y-36"
           >
         </div>
         <div class="flex flex-col items-center justify-center">
           <!-- Woman vector -->
           <img
             src="~/public/img/vectors/logo.svg"
-            alt="Woman illustration"
-            class="w-full md:w-3/4 lg:w-2/5 h-auto lg:translate-y-2 z-20"
+            alt="The website logo"
           >
           <!-- Splash information box -->
-          <div class="bg-neutral border border-primary p-6 max-w-2xl max-h-full z-10">
+          <div class="bg-neutral border border-primary p-6 max-w-2xl z-10">
             <div class="text-center">
               <div class="font-rosamila text-big text-primary">
                 Anemone

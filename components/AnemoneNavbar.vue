@@ -1,5 +1,5 @@
 <template>
-  <nav class="relative w-full z-30 h-16">
+  <nav class="relative w-full z-30">
     <div class="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-8 lg:px-10">
       <div class="flex items-center justify-between h-16">
         <!-- Logo : come back to homepage -->

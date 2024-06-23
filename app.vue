@@ -1,10 +1,10 @@
 <template>
   <div :class="backgroundClass" class="flex flex-col h-screen">
-    <AnemoneNavbar />
+    <AnemoneNavbar class="h-16" />
     <NuxtLayout>
-      <NuxtPage />
+      <NuxtPage class="flex-grow" />
     </NuxtLayout>
-    <AnemoneFooter />
+    <AnemoneFooter class="h-16"/>
   </div>
 </template>
 

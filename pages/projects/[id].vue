@@ -13,10 +13,8 @@
   <script setup lang="ts">
   import { ref, computed, onMounted } from 'vue';
   import { useRoute } from 'vue-router';
-  
-  useHead({
-    title: 'project',
-  });
+  import { useHead } from '@vueuse/head';
+
   
   const route = useRoute();
   const id = parseInt(route.params.id as string, 10);
@@ -40,5 +38,13 @@
   
   const project = computed(() => projects.value.find(e => e.id === id));
   
+  watch(project, (newProject) => {
+    if (newProject) {
+      useHead({
+        title: newProject.name,
+      });
+    }
+  });
+
   </script>
   

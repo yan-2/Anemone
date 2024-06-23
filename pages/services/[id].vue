@@ -5,33 +5,28 @@
         <p>{{ service.description }}</p>
         <p>{{ service.availability }}</p>
         <p>{{ service.testimonial }}</p>
-
       </div>
       <div v-else>
         <p>Loading...</p>
       </div>
     </div>
   </template>
-    
-  <script setup lang="ts">
-  import { ref, computed, onMounted } from 'vue';
-  import { useRoute } from 'vue-router';
-
   
-  useHead({
-    title: 'service',
-  });
+  <script setup lang="ts">
+  import { ref, computed, onMounted, watch } from 'vue';
+  import { useRoute } from 'vue-router';
+  import { useHead } from '@vueuse/head';
   
   const route = useRoute();
   const id = parseInt(route.params.id as string, 10);
   
   interface Service {
-  id: number;
-  name: string;
-  description: string;
-  availability: string;
-  testimonial: string;
-}
+    id: number;
+    name: string;
+    description: string;
+    availability: string;
+    testimonial: string;
+  }
   
   const services = ref<Service[]>([]);
   
@@ -46,5 +41,12 @@
   
   const service = computed(() => services.value.find(e => e.id === id));
   
+  watch(service, (newService) => {
+    if (newService) {
+      useHead({
+        title: newService.name,
+      });
+    }
+  });
   </script>
   

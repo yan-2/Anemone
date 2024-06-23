@@ -14,11 +14,7 @@
   <script setup lang="ts">
   import { ref, computed, onMounted } from 'vue';
   import { useRoute } from 'vue-router';
-
-  
-  useHead({
-    title: 'person',
-  });
+  import { useHead } from '@vueuse/head';
   
   const route = useRoute();
   const id = parseInt(route.params.id as string, 10);
@@ -46,4 +42,12 @@
   
   const employee = computed(() => employees.value.find(e => e.id === id));
   
+  watch(employee, (newPerson) => {
+    if (newPerson) {
+      useHead({
+        title: newPerson.name,
+      });
+    }
+  });
+
   </script>

@@ -8,49 +8,55 @@ module.exports = {
     './app.vue',
     './error.vue',
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       // Anemone color palette
       colors: {
-        // Website default theme
-        background: '#EDEDED',
-        primary: '#2F2E41',
-        secondary: '#8A88A0',
+        html: {
+          light: '#EDEDED',
+          dark: '#2F2E41',
+        },
+        background: {
+          DEFAULT: '#EDEDED',
+          dark: '#2F2E41',
+        },
+        primary: {
+          DEFAULT: '#2F2E41',
+          dark: '#EDEDED',
+        },
+        secondary: {
+          DEFAULT: '#A19FB9',
+          dark: '#8A88A0',
+        },
         ternary: '#434159',
         action: '#D16464',
         accent: '#8185E7',
         neutral: '#FFFFFF',
         hyperlinks: '#649DD1',
-        // Assistant theme
-        dark: {
-          background: '#2F2E41',
-          primary: '#EDEDED',
-          secondary: '#8A88A0',
-          ternary: '#434159',
-          action: '#D16464',
-          accent: '#8185E7',
-          neutral: '#FFFFFF',
-          hyperlinks: '#649DD1',
-        },
       },
-      // Anemone fonts
+      // Fonts and text formatting
       fontFamily: {
         roboto: ['Roboto Mono', 'monospace'],
         rosamila: ['Rosamila', 'sans-serif'],
       },
       fontSize: {
-        base: '0.85rem',
-        big: '3.5rem',
+        title: '3.5rem',
       },
-      // Custom translations
-      translate: {
-        2: '0.55rem',
+      keyframes: {
+        shrink: {
+          '0%': { transform: 'scale(1)' },
+          '100%': { transform: 'scale(0.9)' },
+        },
       },
-      transitionDuration: {
-        400: '400ms',
-        600: '600ms',
-        // Add any custom durations you need
+      animation: {
+        shrink: 'shrink 0.3s ease-out forwards',
       },
+    },
+  },
+  variants: {
+    extend: {
+      animation: ['hover', 'focus'],
     },
   },
   plugins: [],

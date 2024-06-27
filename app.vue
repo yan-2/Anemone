@@ -1,40 +1,42 @@
 <template>
   <div
-    :class="backgroundClass"
-    class="flex flex-col min-h-screen transition-colors duration-500 ease-in-out"
+    class="flex flex-col w-screen h-screen font-roboto text-sm"
+    :class="{
+      'bg-background-dark text-primary-dark': isDarkMode,
+      'bg-background text-primary': !isDarkMode,
+    }"
   >
-    <AnemoneNavbar class="h-16" />
+    <AnemoneNavbar />
     <NuxtLayout>
-      <NuxtPage class="flex-grow" />
+      <NuxtPage class="h-screen bg-red-400"/>
     </NuxtLayout>
-    <AnemoneFooter class="h-16" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import AnemoneNavbar from '~/components/AnemoneNavbar.vue'
-import AnemoneFooter from '~/components/AnemoneFooter.vue'
-
-useHead({
-  titleTemplate: '%s - Anemone',
-  meta: [
-    { name: 'description', content: 'Join us in our mission to empower women or let us help you.' },
-    { name: 'keywords', content: 'women, help you' },
-    { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-    { charset: 'utf-8' },
-  ],
-})
 
 const route = useRoute()
+const isDarkMode = ref(false)
 
-const backgroundClass = computed(() => {
-  return route.path === '/assistant'
-    ? 'bg-dark-background text-dark-primary'
-    : 'bg-background text-primary'
+const updateDarkMode = () => {
+  isDarkMode.value = route.path.includes('/assistant')
+  // Apply dark mode class to html element
+  if (isDarkMode.value) {
+    document.documentElement.classList.add('dark', 'bg-html-dark')
+    document.documentElement.classList.remove('bg-html-light')
+  }
+  else {
+    document.documentElement.classList.remove('dark', 'bg-html-dark')
+    document.documentElement.classList.add('bg-html-light')
+  }
+}
+
+onMounted(() => {
+  updateDarkMode()
 })
 
-// Provide the current theme to all components
-provide('currentTheme', computed(() => route.path === '/assistant' ? 'dark' : 'light'))
+watch(() => route.path, updateDarkMode)
 </script>

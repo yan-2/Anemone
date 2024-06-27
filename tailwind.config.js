@@ -42,6 +42,8 @@ module.exports = {
       },
       fontSize: {
         title: '3.5rem',
+        base: '0.85rem',
+        big: '3.5rem',
       },
       keyframes: {
         shrink: {

@@ -6,7 +6,7 @@ export default defineNuxtConfig({
   components: { global: true },
   devtools: { enabled: true },
   ssr: true,
-  modules: ['@nuxt/eslint', '@nuxtjs/sitemap'],
+  modules: ['@nuxt/eslint', '@nuxtjs/sitemap', "vue3-carousel-nuxt", "@nuxt/image"],
   postcss: {
     plugins: {
       tailwindcss: {},

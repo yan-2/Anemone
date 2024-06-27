@@ -1,8 +1,8 @@
 <template>
-  <div class="" v-loading="true">
+  <div v-loading="true">
     <h1 class="title">Meet our amazing team</h1>
     <p class="subtitle">Answer to your questions</p>
-    <Carousel v-bind="settings" :breakpoints="breakpoints">
+    <Carousel v-bind="settings" :breakpoints="breakpoints" class="md:max-w-5xl mx-auto">
       <Slide v-for="slide in 20" :key="slide">
         <div class="carousel__item p-2 sm:p-0">
           <div class="border border-primary lg:p-6 sm:p-0 bg-white lg:ml-2 relative">
@@ -11,7 +11,7 @@
             <div class="">
               <h2 class="text-lg font-semibold">chiara moretti</h2>
               <p class="text-lg">Legal</p>
-              <button class="bg-action text-white px-4 py-2 mt-4">
+              <button class="bg-accent text-white px-4 py-2 mt-4">
                 Details
               </button>
             </div>
@@ -19,7 +19,8 @@
         </div>
       </Slide>
       <template #addons>
-        <Navigation/>
+        <Navigation />
+        <Pagination />
       </template>
     </Carousel>
   </div>
@@ -70,4 +71,23 @@ let breakpoints = {
 }
 
 </script>
-  
+<style>
+@media (min-width: 1024px) {
+  .carousel__prev{
+  position: absolute;
+  transform: translateX(-100%);
+}
+.carousel__next{
+  position: absolute;
+  transform: translateX(100%);
+}
+}
+
+@media (max-width: 700px) {
+  .carousel__pagination {
+    display: none;
+  }
+}
+
+
+</style>

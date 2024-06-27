@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class="" v-loading="true">
     <h1 class="title">Meet our amazing team</h1>
     <p class="subtitle">Answer to your questions</p>
     <Carousel v-bind="settings" :breakpoints="breakpoints">

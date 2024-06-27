@@ -5,7 +5,7 @@
     <Carousel v-bind="settings" :breakpoints="breakpoints" class="md:max-w-5xl mx-auto">
       <Slide v-for="slide in 20" :key="slide">
         <div class="carousel__item p-2 sm:p-0">
-          <div class="border border-primary lg:p-6 sm:p-0 bg-white lg:ml-2 relative">
+          <div class="border border-primary lg:p-6 sm:p-0 bg-white lg:ml-2 mr-2 relative">
             <!--            avatar-->
             <NuxtImg src="img/people/chiara_moretti.png"/>
             <div class="">

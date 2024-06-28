@@ -19,9 +19,13 @@
             class="hover:text-primary dark:hover:text-primary-dark"
             :class="{ 'font-bold text-primary dark:text-primary-dark': isActive(item.href) }"
           >
-            <NuxtLink :to="item.href">
+            <NuxtLink
+              v-if="item.text !== 'Services'"
+              :to="item.href"
+            >
               {{ item.text }}
             </NuxtLink>
+            <ServicesMenu v-else />
           </li>
         </ul>
       </div>
@@ -31,6 +35,7 @@
 
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
+import ServicesMenu from '~/components/ServicesMenu.vue' // Adjust the path as necessary
 
 // Exports component
 defineOptions({ name: 'AnemoneNavbar' })

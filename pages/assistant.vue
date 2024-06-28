@@ -1,76 +1,152 @@
 <template>
-  <div class="flex flex-col items-center bg-green-900 max-h-dvh">
-    <!-- Chat history -->
-    <div class="relative flex-1 flex flex-col justify-center items-center max-w-2xl w-full bg-green-600 overflow-y-auto">
+  <div class="flex flex-col h-full w-full overflow-hidden px-8">
+    <div class="flex-1 w-full flex flex-col overflow-hidden">
+      <!-- CHAT -->
       <div
-        v-if="showLogo"
-        id="alfreudLogo"
-        class="flex flex-col justify-center items-center bg-blue-400 w-full p-4 transition-opacity duration-300 ease-in-out"
-        :class="{ 'opacity-0': !showLogo, 'opacity-100': showLogo }"
+        ref="chatHistoryRef"
+        class="flex-1 overflow-y-auto w-full"
       >
-        <div class="text-background font-rosamila text-big">
-          Alfreud
-        </div>
-        <div class="text-secondary font-roboto font-bold text-base">
-          How can I help you today?
-        </div>
-      </div>
-
-      <div class="w-full p-4 font-roboto">
-        <div
-          v-for="(msg, index) in chatHistory"
-          :key="index"
-          class="mb-4"
-          :class="msg.role ? (msg.role === 'user' ? 'flex flex-col items-end' : 'flex flex-col items-start') : 'flex flex-col items-start'"
-        >
-          <div class="text-secondary font-bold mb-1">
-            {{ msg.role ? (msg.role === 'user' ? 'User' : 'Alfreud') : 'Unknown' }}
-          </div>
+        <div class="max-w-3xl mx-auto p-4 min-h-full">
+          <!-- ALFREUD LOGO  -->
           <div
-            :class="[
-              'p-2 rounded max-w-[70%]',
-              msg.role ? (msg.role === 'user' ? 'bg-blue-500 text-white' : 'bg-gray-300 text-black') : 'bg-gray-400 text-white',
-            ]"
+            v-if="showLogo"
+            class="flex items-center justify-center h-full space-y-2"
           >
-            {{ msg.content || 'No message content' }}
+            <div class="text-center">
+              <!-- Title -->
+              <div class="font-rosamila text-5xl text-primary-dark">
+                Alfreud
+              </div>
+              <!-- Subtitle -->
+              <div class="text-secondary-dark">
+                How can I help you today?
+              </div>
+            </div>
+          </div>
+
+          <!-- MESSAGES -->
+          <div class="space-y-4">
+            <div
+              v-for="(msg, index) in chatHistory"
+              :key="index"
+              class="flex flex-col"
+              :class="msg.role === 'user' ? 'items-end' : 'items-start'"
+            >
+              <!-- Message role -->
+              <div
+                v-if="msg.role !== 'user'"
+                class="text-sm text-primary-dark mb-2"
+              >
+                Alfreud
+              </div>
+              <!-- Message content -->
+              <div
+                class="max-w-[80%] rounded-md"
+                :class="msg.role === 'user' ? 'px-3 py-2 bg-ternary text-neutral' : 'bg-transparent text-secondary-dark'"
+              >
+                {{ msg.content }}
+              </div>
+            </div>
+          </div>
+
+          <!-- Alfreud thinking indicator : three jumping dots -->
+          <div
+            v-if="isLoading"
+            class="flex flex-col items-start"
+          >
+            <div class="text-primary-dark mb-2">
+              Alfreud
+            </div>
+            <div class="flex space-x-1.5">
+              <div class="w-1.5 h-1.5 bg-secondary-dark rounded-full animate-bounce" />
+              <div
+                class="w-1.5 h-1.5 bg-secondary-dark rounded-full animate-bounce"
+                style="animation-delay: 0.15s"
+              />
+              <div
+                class="w-1.5 h-1.5 bg-secondary-dark rounded-full animate-bounce"
+                style="animation-delay: 0.3s"
+              />
+            </div>
           </div>
         </div>
       </div>
-    </div>
-
-    <!-- Input bar -->
-    <div class="flex items-end w-4/12 bg-ternary font-roboto py-3 px-3 rounded-xl">
-      <div class="relative w-full h-full flex items-center mr-4 py-1">
-        <textarea
-          ref="textareaRef"
-          v-model="message"
-          spellcheck="false"
-          placeholder="Talk with Alfreud"
-          rows="1"
-          class="text-neutral placeholder-secondary resize-none bg-transparent caret-neutral w-full text-base focus:outline-none"
-          @input="adjustTextareaHeight"
-        />
-      </div>
-      <div class="flex justify-center items-center">
-        <div class="text-base mr-2.5">
-          <span :class="['font-bold', charCount > maxChars * 0.9 ? 'text-action' : 'text-neutral']">
-            {{ charCount }}
-          </span>
-          <span class="text-secondary">/{{ maxChars }}</span>
+      <!-- Input bar -->
+      <div class="flex justify-center w-full mt-4">
+        <div class="max-w-4xl w-full bg-ternary flex items-end p-4 rounded-lg shadow-md">
+          <div class="flex-grow flex items-center">
+            <textarea
+              ref="textareaRef"
+              v-model="message"
+              spellcheck="false"
+              placeholder="Talk with Alfreud"
+              rows="1"
+              :maxlength="maxChars"
+              class="text-primary-dark placeholder-secondary-dark resize-none bg-transparent caret-neutral w-full focus:outline-none"
+              @input="adjustTextareaHeight"
+              @keydown.enter.exact.prevent="sendMessage"
+            />
+          </div>
+          <div class="text-secondary-dark mx-2 whitespace-nowrap">
+            {{ charCount }} / {{ maxChars }}
+          </div>
+          <button
+            class="transition-colors duration-200 ml-2"
+            :class="message.trim() ? 'text-primary-dark' : 'text-secondary-dark'"
+            :disabled="!message.trim()"
+            @click="sendMessage"
+          >
+            <PhPaperPlane
+              :size="24"
+              weight="fill"
+            />
+          </button>
         </div>
-        <button
-          class="hover:bg-secondary text-secondary font-bold text-base px-2.5 py-1 rounded-lg bg-transparent hover:text-neutral transition-colors duration-300"
-          @click="sendMessage"
-        >
-          Send
-        </button>
       </div>
     </div>
   </div>
 </template>
 
-<script setup lang="ts">
-import { useAlfreud } from '~/assets/js/alfreud'
+<script setup>
+import { ref, watch, nextTick } from 'vue'
+import { PhPaperPlane } from '@phosphor-icons/vue'
+import { useAlfreud } from '~/assets/js/alfreud.js'
 
-const { message, textareaRef, charCount, maxChars, adjustTextareaHeight, sendMessage, showLogo, chatHistory } = useAlfreud()
+definePageMeta({
+  layout: 'chatbot',
+})
+
+const {
+  message,
+  textareaRef,
+  charCount,
+  maxChars,
+  sendMessage,
+  showLogo,
+  chatHistory,
+  isLoading,
+} = useAlfreud()
+
+const chatHistoryRef = ref(null)
+
+const adjustTextareaHeight = () => {
+  const textarea = textareaRef.value
+  textarea.style.height = 'auto'
+  textarea.style.height = `${textarea.scrollHeight}px`
+}
+
+const scrollToBottom = () => {
+  nextTick(() => {
+    if (chatHistoryRef.value) {
+      chatHistoryRef.value.scrollTop = chatHistoryRef.value.scrollHeight
+    }
+  })
+}
+
+watch(chatHistory, scrollToBottom, { deep: true })
+watch(isLoading, (newValue) => {
+  if (!newValue) {
+    scrollToBottom()
+  }
+})
 </script>

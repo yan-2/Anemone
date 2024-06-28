@@ -7,7 +7,7 @@
         <div class="carousel__item p-2 sm:p-0">
           <div class="border border-primary lg:p-6 sm:p-0 bg-white lg:ml-2 mr-2 relative">
             <!--            avatar-->
-            <NuxtImg src="img/people/chiara_moretti.png"/>
+            <NuxtImg src="img/people/chiara_moretti.jpg"/>
             <div class="">
               <h2 class="text-lg font-semibold">chiara moretti</h2>
               <p class="text-lg">Legal</p>

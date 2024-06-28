@@ -15,6 +15,7 @@
     "@nuxt/image": "^1.7.0",
     "@nuxtjs/sitemap": "^5.2.0",
     "@nuxtjs/supabase": "^1.2.1",
+    "@phosphor-icons/vue": "^2.2.1",
     "@vueuse/head": "^2.0.0",
     "nuxt": "^3.11.2",
     "vue": "^3.4.21",

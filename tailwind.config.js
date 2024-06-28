@@ -11,12 +11,8 @@ module.exports = {
   darkMode: 'class',
   theme: {
     extend: {
-      // Anemone color palette
+      // Anemone color palette [ light and dark ]
       colors: {
-        html: {
-          light: '#EDEDED',
-          dark: '#2F2E41',
-        },
         background: {
           DEFAULT: '#EDEDED',
           dark: '#2F2E41',
@@ -42,23 +38,11 @@ module.exports = {
       },
       fontSize: {
         title: '3.5rem',
-        base: '0.85rem',
-        big: '3.5rem',
       },
-      keyframes: {
-        shrink: {
-          '0%': { transform: 'scale(1)' },
-          '100%': { transform: 'scale(0.9)' },
-        },
+      // Custom translations
+      translate: {
+        2: '0.5rem',
       },
-      animation: {
-        shrink: 'shrink 0.3s ease-out forwards',
-      },
-    },
-  },
-  variants: {
-    extend: {
-      animation: ['hover', 'focus'],
     },
   },
   plugins: [],

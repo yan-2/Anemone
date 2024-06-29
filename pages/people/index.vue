@@ -12,7 +12,7 @@
         </div>
       </div>
     </div>
-    <Carousel v-if="employees.length!=0" v-bind="settings" :breakpoints="breakpoints" class="md:max-w-6xl mx-auto">
+    <Carousel  v-show="employees.length!=0 && !loading" v-bind="settings" :breakpoints="breakpoints" class="md:max-w-6xl mx-auto">
       <Slide v-for="item in employees" :key="item.id">
         <div class="carousel__item p-2 sm:p-0">
           <div class="border border-primary lg:p-3 sm:p-0 bg-white lg:ml-2 mr-2 relative">
@@ -37,6 +37,7 @@
 </template>
 
 <script setup lang="ts">
+import { ref, onMounted } from 'vue'
 useHead({
   title: 'People',
 })
@@ -50,27 +51,15 @@ interface Employee {
   service: any[];
   project: any[];
 }
-
-const employees = ref<Employee[]>([]);
-
-const fetchEmployees = async () => {
-  console.log('data')
-  const {data} = await useFetch<{ data: Employee[] }>('/api/employee');
-  if (data.value) {
-
-    employees.value = data.value.data;
-  }
-};
-
-fetchEmployees();
-
 let settings = {
-  itemsToShow: 1,
+  itemsToShow: 4,
   snapAlign: 'center',
 }
-// breakpoints are mobile first
-// any settings not specified will fallback to the carousel settings
 let breakpoints = {
+  200: {
+    itemsToShow: 1,
+    snapAlign: 'center',
+  },
   // 700px and up
   700: {
     itemsToShow: 3,
@@ -82,6 +71,21 @@ let breakpoints = {
     snapAlign: 'start',
   },
 }
+const loading = ref<boolean>(true);
+
+onMounted(() => {
+  // 修改 ref 的值需要通过 .value
+  loading.value = false;
+  // console.log(loading.value); // 应该输出 false
+});
+
+let employees = ref<Employee[]>([]);
+
+let {data} = await useFetch('/api/employee')
+employees.value = data.value.data;
+
+
+
 
 </script>
 <style>

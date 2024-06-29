@@ -4,17 +4,17 @@
       <!-- CHAT -->
       <div
         ref="chatHistoryRef"
-        class="flex-1 overflow-y-auto w-full px-6"
+        class="flex-1 overflow-y-auto w-full px-8"
       >
-        <div class="max-w-3xl mx-auto p-4 min-h-full">
+        <div class="max-w-2xl mx-auto min-h-full flex flex-col py-4">
           <!-- ALFREUD LOGO  -->
           <div
             v-if="showLogo"
-            class="flex items-center justify-center h-full space-y-2"
+            class="flex-grow flex items-center justify-center"
           >
             <div class="text-center">
               <!-- Title -->
-              <div class="font-rosamila text-5xl text-primary-dark">
+              <div class="font-rosamila text-5xl text-primary-dark mb-2">
                 Alfreud
               </div>
               <!-- Subtitle -->
@@ -35,14 +35,14 @@
               <!-- Message role -->
               <div
                 v-if="msg.role !== 'user'"
-                class="text-sm text-primary-dark mb-2"
+                class="text-sm text-primary-dark mb-1"
               >
                 Alfreud
               </div>
               <!-- Message content -->
               <div
-                class="max-w-[80%] rounded-md"
-                :class="msg.role === 'user' ? 'px-3 py-2 bg-ternary text-neutral' : 'bg-transparent text-secondary-dark'"
+                class="max-w-[80%]"
+                :class="msg.role === 'user' ? 'px-3 py-2.5 bg-ternary text-neutral border border-secondary-dark/5 rounded-xl shadow-sm' : 'bg-transparent text-secondary-dark'"
               >
                 {{ msg.content }}
               </div>
@@ -54,7 +54,7 @@
             v-if="isLoading"
             class="flex flex-col items-start"
           >
-            <div class="text-primary-dark mb-2">
+            <div class="text-primary-dark mb-1">
               Alfreud
             </div>
             <div class="flex space-x-1.5">
@@ -72,7 +72,7 @@
         </div>
       </div>
       <!-- INPUT BAR -->
-      <div class="flex justify-center w-full mt-4 px-4">
+      <div class="flex justify-center w-full px-4">
         <div class="max-w-3xl w-full bg-ternary flex items-end py-4 border border-secondary-dark/5 rounded-xl shadow-lg">
           <div class="flex-grow flex items-center px-4 py-0.5">
             <!-- Textarea -->

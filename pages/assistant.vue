@@ -1,10 +1,10 @@
 <template>
-  <div class="flex flex-col h-full w-full overflow-hidden px-8">
+  <div class="flex flex-col h-full w-full overflow-hidden">
     <div class="flex-1 w-full flex flex-col overflow-hidden">
       <!-- CHAT -->
       <div
         ref="chatHistoryRef"
-        class="flex-1 overflow-y-auto w-full"
+        class="flex-1 overflow-y-auto w-full px-6"
       >
         <div class="max-w-3xl mx-auto p-4 min-h-full">
           <!-- ALFREUD LOGO  -->
@@ -49,7 +49,7 @@
             </div>
           </div>
 
-          <!-- Alfreud thinking indicator : three jumping dots -->
+          <!-- Thinking indicator -->
           <div
             v-if="isLoading"
             class="flex flex-col items-start"
@@ -71,10 +71,11 @@
           </div>
         </div>
       </div>
-      <!-- Input bar -->
-      <div class="flex justify-center w-full mt-4">
-        <div class="max-w-4xl w-full bg-ternary flex items-end p-4 rounded-lg shadow-md">
-          <div class="flex-grow flex items-center">
+      <!-- INPUT BAR -->
+      <div class="flex justify-center w-full mt-4 px-4">
+        <div class="max-w-3xl w-full bg-ternary flex items-end py-4 border border-secondary-dark/5 rounded-xl shadow-lg">
+          <div class="flex-grow flex items-center px-4 py-0.5">
+            <!-- Textarea -->
             <textarea
               ref="textareaRef"
               v-model="message"
@@ -82,17 +83,22 @@
               placeholder="Talk with Alfreud"
               rows="1"
               :maxlength="maxChars"
-              class="text-primary-dark placeholder-secondary-dark resize-none bg-transparent caret-neutral w-full focus:outline-none"
+              class="max-h-32 text-primary-dark placeholder-secondary-dark resize-none bg-transparent caret-neutral w-full focus:outline-none"
               @input="adjustTextareaHeight"
               @keydown.enter.exact.prevent="sendMessage"
             />
           </div>
-          <div class="text-secondary-dark mx-2 whitespace-nowrap">
-            {{ charCount }} / {{ maxChars }}
+          <!-- Chars counter -->
+          <div class="py-0.5">
+            <span
+              class="font-bold"
+              :class="charCount < 150 ? 'text-primary-dark' : 'text-action'"
+            >{{ charCount }}</span><span class="text-secondary-dark">/{{ maxChars }}</span>
           </div>
+          <!-- Send button -->
           <button
-            class="transition-colors duration-200 ml-2"
-            :class="message.trim() ? 'text-primary-dark' : 'text-secondary-dark'"
+            class="transition-colors duration-200 px-4"
+            :class="message.trim() ? 'text-primary-dark animate-wiggle' : 'text-secondary-dark'"
             :disabled="!message.trim()"
             @click="sendMessage"
           >
@@ -132,7 +138,8 @@ const chatHistoryRef = ref(null)
 const adjustTextareaHeight = () => {
   const textarea = textareaRef.value
   textarea.style.height = 'auto'
-  textarea.style.height = `${textarea.scrollHeight}px`
+  const newHeight = Math.min(textarea.scrollHeight, 128) // 128px is equivalent to max-h-32
+  textarea.style.height = `${newHeight}px`
 }
 
 const scrollToBottom = () => {

@@ -8,29 +8,31 @@
     >
       Services
     </NuxtLink>
-    <div
-      v-if="isOpen"
-      class="absolute left-1/2 transform -translate-x-1/2 mt-4 w-sm rounded-md border border-primary bg-neutral"
-      @mouseenter="cancelCloseTimer"
-      @mouseleave="closeMenu"
-    >
+    <ClientOnly>
       <div
-        class="py-1"
-        role="menu"
-        aria-orientation="vertical"
-        aria-labelledby="options-menu"
+        v-if="isOpen"
+        class="absolute left-1/2 transform -translate-x-1/2 mt-4 w-sm rounded-md border border-primary bg-neutral"
+        @mouseenter="cancelCloseTimer"
+        @mouseleave="closeMenu"
       >
-        <NuxtLink
-          v-for="service in services"
-          :key="service.id"
-          :to="`/services/${service.id}`"
-          class="block px-4 py-2 text-left text-secondary hover:text-primary"
-          role="menuitem"
+        <div
+          class="py-1"
+          role="menu"
+          aria-orientation="vertical"
+          aria-labelledby="options-menu"
         >
-          {{ service.name }}
-        </NuxtLink>
+          <NuxtLink
+            v-for="service in services"
+            :key="service.id"
+            :to="`/services/${service.id}`"
+            class="block px-4 py-2 text-left text-secondary hover:text-primary"
+            role="menuitem"
+          >
+            {{ service.name }}
+          </NuxtLink>
+        </div>
       </div>
-    </div>
+    </ClientOnly>
   </div>
 </template>
 
@@ -54,14 +56,14 @@ const openMenu = () => {
 }
 
 const startCloseTimer = () => {
-  closeTimer = setTimeout(() => {
+  closeTimer = window.setTimeout(() => {
     isOpen.value = false
   }, 100) // 100ms delay before closing
 }
 
 const cancelCloseTimer = () => {
   if (closeTimer) {
-    clearTimeout(closeTimer)
+    window.clearTimeout(closeTimer)
     closeTimer = null
   }
 }
@@ -70,23 +72,17 @@ const closeMenu = () => {
   isOpen.value = false
 }
 
-const fetchServices = async () => {
-  try {
-    const { data } = await useFetch<{ data: Service[] }>('/api/service')
-    if (data.value) {
-      services.value = data.value.data
-    }
-  }
-  catch (error) {
-    console.error('Error fetching services:', error)
-  }
-}
+const { data: servicesData } = await useFetch<{ data: Service[] }>('/api/service')
 
-onMounted(fetchServices)
+onMounted(() => {
+  if (servicesData.value) {
+    services.value = servicesData.value.data
+  }
+})
 
 onBeforeUnmount(() => {
   if (closeTimer) {
-    clearTimeout(closeTimer)
+    window.clearTimeout(closeTimer)
   }
 })
 </script>

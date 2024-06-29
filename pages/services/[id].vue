@@ -7,7 +7,7 @@
           {{ service.name }}
         </h2>
         <p class="text-secondary mb-6">
-          Guiding you to see yourself bloom again
+          a tag line thats not in our DB yet
         </p>
        <!-- Responsive grid -->
         <div :class="responsiveGridClass">

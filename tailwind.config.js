@@ -43,6 +43,16 @@ module.exports = {
       translate: {
         2: '0.5rem',
       },
+      // Custom animations
+      animation: {
+        wiggle: 'wiggle 0.3s ease-in-out 1',
+      },
+      keyframes: {
+        wiggle: {
+          '0%, 100%': { transform: 'rotate(-4.5deg)' },
+          '50%': { transform: 'rotate(4.5deg)' },
+        },
+      },
     },
   },
   plugins: [],

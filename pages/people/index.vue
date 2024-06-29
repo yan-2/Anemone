@@ -1,16 +1,26 @@
 <template>
-  <div v-loading="true">
-    <h1 class="title">Meet our amazing team</h1>
-    <p class="subtitle">Answer to your questions</p>
-    <Carousel v-bind="settings" :breakpoints="breakpoints" class="md:max-w-5xl mx-auto">
-      <Slide v-for="slide in 20" :key="slide">
+  <div>
+    <div class="flex items-center justify-center py-4 mb-8 space-y-2">
+      <div class="text-center">
+        <!-- Title -->
+        <div class="font-rosamila text-5xl">
+          Meet our amazing team
+        </div>
+        <!-- Subtitle -->
+        <div class="text-secondary-dark">
+          Answer to your questions
+        </div>
+      </div>
+    </div>
+    <Carousel v-if="employees.length!=0" v-bind="settings" :breakpoints="breakpoints" class="md:max-w-6xl mx-auto">
+      <Slide v-for="item in employees" :key="item.id">
         <div class="carousel__item p-2 sm:p-0">
-          <div class="border border-primary lg:p-6 sm:p-0 bg-white lg:ml-2 mr-2 relative">
+          <div class="border border-primary lg:p-3 sm:p-0 bg-white lg:ml-2 mr-2 relative">
             <!--            avatar-->
-            <NuxtImg src="img/people/chiara_moretti.jpg"/>
+            <NuxtImg :src="item.pic"/>
             <div class="">
-              <h2 class="text-lg font-semibold">chiara moretti</h2>
-              <p class="text-lg">Legal</p>
+              <h2 class="text-lg font-semibold">{{item.name}}</h2>
+              <p class="text-base">{{item.role}}</p>
               <button class="bg-accent text-white px-4 py-2 mt-4">
                 Details
               </button>
@@ -33,6 +43,7 @@ useHead({
 
 interface Employee {
   id: number;
+  pic:string;
   name: string;
   role: string;
   cv: string;
@@ -43,16 +54,18 @@ interface Employee {
 const employees = ref<Employee[]>([]);
 
 const fetchEmployees = async () => {
+  console.log('data')
   const {data} = await useFetch<{ data: Employee[] }>('/api/employee');
   if (data.value) {
+
     employees.value = data.value.data;
   }
 };
 
-onMounted(fetchEmployees);
+fetchEmployees();
 
 let settings = {
-  itemsToShow: 1,
+  itemsToShow: 4,
   snapAlign: 'center',
 }
 // breakpoints are mobile first

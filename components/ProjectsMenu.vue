@@ -1,12 +1,12 @@
 <template>
   <div class="relative group">
     <NuxtLink
-      to="/services"
+      to="/projects"
       class="hover:text-primary dark:hover:text-primary-dark"
       @mouseenter="startOpenTimer"
       @mouseleave="startCloseTimer"
     >
-      Services
+      Projects
     </NuxtLink>
     <transition
       enter-active-class="transition ease-out duration-200"
@@ -29,13 +29,13 @@
           aria-labelledby="options-menu"
         >
           <NuxtLink
-            v-for="service in services"
-            :key="service.id"
-            :to="`/services/${service.id}`"
+            v-for="project in projects"
+            :key="project.id"
+            :to="`/projects/${project.id}`"
             class="block px-4 py-2 text-left text-secondary hover:text-primary"
             role="menuitem"
           >
-            {{ service.name }}
+            {{ project.name }}
           </NuxtLink>
         </div>
       </div>
@@ -46,16 +46,14 @@
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 
-interface Service {
+interface Project {
   id: number
   name: string
-  description: string
-  availability: string
-  testimonial: string
+  // Add other project properties as needed
 }
 
 const isOpen = ref(false)
-const services = ref<Service[]>([])
+const projects = ref<Project[]>([])
 let openTimer: number | null = null
 let closeTimer: number | null = null
 
@@ -87,19 +85,19 @@ const cancelCloseTimer = () => {
   }
 }
 
-const fetchServices = async () => {
+const fetchProjects = async () => {
   try {
-    const { data } = await useFetch<{ data: Service[] }>('/api/service')
+    const { data } = await useFetch<{ data: Project[] }>('/api/project')
     if (data.value) {
-      services.value = data.value.data
+      projects.value = data.value.data
     }
   }
   catch (error) {
-    console.error('Error fetching services:', error)
+    console.error('Error fetching projects:', error)
   }
 }
 
-onMounted(fetchServices)
+onMounted(fetchProjects)
 
 onBeforeUnmount(() => {
   cancelOpenTimer()

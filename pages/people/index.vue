@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div class="w-full max-w-7xl mx-auto px-4 text-primary">
     <div class="flex items-center justify-center py-4 mb-8 space-y-2">
       <div class="text-center">
         <!-- Title -->
-        <div class="font-rosamila text-5xl">
+        <div class="font-rosamila md:text-5xl text-4xl">
           Meet our amazing team
         </div>
         <!-- Subtitle -->
@@ -43,7 +43,7 @@ useHead({
 
 interface Employee {
   id: number;
-  pic:string;
+  pic: string;
   name: string;
   role: string;
   cv: string;
@@ -65,7 +65,7 @@ const fetchEmployees = async () => {
 fetchEmployees();
 
 let settings = {
-  itemsToShow: 4,
+  itemsToShow: 1,
   snapAlign: 'center',
 }
 // breakpoints are mobile first
@@ -86,14 +86,15 @@ let breakpoints = {
 </script>
 <style>
 @media (min-width: 1024px) {
-  .carousel__prev{
-  position: absolute;
-  transform: translateX(-100%);
-}
-.carousel__next{
-  position: absolute;
-  transform: translateX(100%);
-}
+  .carousel__prev {
+    position: absolute;
+    transform: translateX(-100%);
+  }
+
+  .carousel__next {
+    position: absolute;
+    transform: translateX(100%);
+  }
 }
 
 @media (max-width: 700px) {

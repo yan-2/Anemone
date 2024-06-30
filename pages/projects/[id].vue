@@ -7,7 +7,7 @@
           {{ project.name }}
         </h2>
         <p class="text-secondary mb-6">
-          a tag line thats not in our DB yet
+         {{project.tag}}
         </p>
        <!-- Responsive grid -->
         <div :class="responsiveGridClass">
@@ -50,6 +50,7 @@ interface Project {
 id: number;
 name: string;
 description: string;
+tag: string;
 }
 
 const projects = ref<Project[]>([]);
@@ -58,7 +59,10 @@ const fetchProjects = async () => {
   const { data } = await useFetch<{ data: Project[] }>('/api/project');
   if (data.value) {
     projects.value = data.value.data;
+    console.log('Fetched projects:', projects.value);
+
   }
+
 };
 
 onMounted(fetchProjects);

@@ -9,13 +9,20 @@
         <p class="text-secondary mb-6">
           a tag line thats not in our DB yet
         </p>
-       <!-- Responsive grid -->
+        <!-- Responsive grid -->
         <div :class="responsiveGridClass">
-          <!-- Description & Benefits -->
+          <!-- Description -->
           <div class="text-left">
-            <h3 class="text-l font-bold mb-2">Description & Benefits</h3>
+            <h3 class="text-l font-bold mb-2">Description</h3>
             <p class="text-primary mb-4">
               {{ service.description }}
+            </p>
+          </div>
+          <!-- Benefits -->
+          <div class="text-left">
+            <h3 class="text-l font-bold mb-2">Benefits</h3>
+            <p class="text-primary mb-4">
+              {{ service.benefits }}
             </p>
           </div>
           <!-- Availability -->
@@ -27,14 +34,13 @@
             <p class="text-primary mb-4">
               To facilitate scheduling, we kindly request that you reserve your spot by emailing us at the address <a href="mailto:counseling@anemone.it" class="text-blue-500 underline">counseling@anemone.it</a>
             </p>
-          </div>
-          <!-- Image -->
-          <div class="flex justify-center items-center">
-            <img
-              src="~/public/img/vectors/woman.svg"
-              alt="Website testimonial"
-              class="min-w-2/3 translate-y-2 z-20"
-            >
+            <div class="flex justify-center">
+              <img
+                :src="service.pic"
+                alt="Website testimonial"
+                class="min-w-2/3 translate-y-2 z-20"
+              >
+            </div>
           </div>
         </div>
         <div class="flex items-center justify-center mt-8">
@@ -49,6 +55,7 @@
     </div> 
   </div> 
 </template>
+
   
 <script setup lang="ts">
 import { ref, computed, onMounted, watch } from 'vue';
@@ -63,8 +70,10 @@ interface Service {
   id: number;
   name: string;
   description: string;
+  benefits: string;
   availability: string;
   testimonial: string;
+  pic: string;
 }
 
 const services = ref<Service[]>([]);
@@ -72,9 +81,15 @@ const services = ref<Service[]>([]);
 const fetchServices = async () => {
   const { data } = await useFetch<{ data: Service[] }>('/api/service');
   if (data.value) {
-    services.value = data.value.data;
+    services.value = data.value.data.map(service => ({
+      ...service,
+      pic: service.pic.startsWith('/') ? service.pic : `/${service.pic}`, // Ensure correct path
+
+    }));
+    console.log('Fetched services:', services.value);
   }
 };
+
 
 onMounted(fetchServices);
 

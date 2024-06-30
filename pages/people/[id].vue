@@ -1,17 +1,56 @@
 <template>
-    <div>
-      <div v-if="employee">
-        <p>{{ employee.name }}</p>
-        <p>{{ employee.role }}</p>
-        <p>{{ employee.cv }}</p>
+  <div class="w-full max-w-7xl mx-auto px-4 text-primary">
+    <div v-if="employee">       
+
+    <div class="flex items-center justify-center py-4 mb-8 space-y-2">
+        <div class="text-center">
+          <!-- Title -->
+          <div class="font-rosamila text-5xl">
+              {{employee.name}}
+          </div>
+          <!-- role -->
+          <div class="text-secondary-dark">
+            {{employee.role}}
+          </div>
+        </div>
       </div>
-      <div v-else>
-        <p>Loading...</p>
+    <!-- First box -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 justify-items-center">
+      <div class="bg-neutral p-6 border border-primary rounded-lg w-full max-w-[425px] h-[400px] min-w-[325px] aspect-[5/6] overflow-auto">
+        <div class="flex justify-center">
+              <img
+                :src="employee.pic"
+                alt="Website testimonial"
+                class="min-w-2/3 translate-y-2 z-20"
+              >
+            </div>
+      </div>
+      <div class="bg-neutral p-6 border border-primary rounded-lg w-full max-w-[425px] h-[400px] min-w-[325px] aspect-[5/6] overflow-auto">
+        <h2 class="font-bold text-base mb-4">
+          Curriculum Vitae
+        </h2>
+        <p class="mb-4">
+          {{employee.cv}}
+        </p>
+
+      </div>
+      <div class="bg-neutral p-6 border border-primary rounded-lg w-full max-w-[425px] h-[400px] min-w-[325px] aspect-[5/6] overflow-auto">
+        <h2 class="font-bold text-base mb-4">
+          Role
+        </h2>
+        <p class="mb-4">
+          {{employee.role}}
+        </p>
+        <h2 class="font-bold text-base mb-4">
+          Services & Projects
+        </h2>
+      </div>
       </div>
     </div>
-  </template>
+  </div>
+</template>
     
-  <script setup lang="ts">
+<script setup lang="ts">
   import { ref, computed, onMounted } from 'vue';
   import { useRoute } from 'vue-router';
   import { useHead } from '@vueuse/head';
@@ -22,6 +61,7 @@
   interface Employee {
     id: number;
     name: string;
+    pic: string;
     role: string;
     cv: string;
     service: any[];
@@ -33,8 +73,10 @@
   const fetchEmployees = async () => {
     const { data } = await useFetch<{ data: Employee[] }>('/api/employee');
     if (data.value) {
-      employees.value = data.value.data;
-      console.log(employees.value);
+      employees.value = data.value.data.map(employee => ({
+      ...employee,
+      pic: employee.pic.startsWith('/') ? employee.pic : `/${employee.pic}`, // Ensure correct path
+    }));
     }
   };
   

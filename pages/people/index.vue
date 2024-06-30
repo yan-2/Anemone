@@ -16,14 +16,14 @@
       <Slide v-for="item in employees" :key="item.id">
         <div class="carousel__item p-2 sm:p-0">
           <div class="border border-primary lg:p-3 sm:p-0 bg-white lg:ml-2 mr-2 relative">
-            <!--            avatar-->
+            <!-- avatar -->
             <NuxtImg :src="item.pic"/>
             <div class="">
               <h2 class="text-lg font-semibold">{{item.name}}</h2>
               <p class="text-base">{{item.role}}</p>
-              <button class="bg-accent text-white px-4 py-2 mt-4">
+              <NuxtLink :to="`/people/${item.id}`" class="bg-accent text-white px-4 py-2 mt-4 inline-block">
                 Details
-              </button>
+              </NuxtLink>
             </div>
           </div>
         </div>
@@ -83,11 +83,9 @@ let employees = ref<Employee[]>([]);
 
 let {data} = await useFetch('/api/employee')
 employees.value = data.value.data;
-
-
-
-
+console.log(employees.value )
 </script>
+
 <style>
 @media (min-width: 1024px) {
   .carousel__prev {
@@ -106,6 +104,4 @@ employees.value = data.value.data;
     display: none;
   }
 }
-
-
 </style>

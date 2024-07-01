@@ -16,14 +16,14 @@
       </div>
     <!-- First box -->
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 justify-items-center">
-      <div class="bg-neutral p-6 border border-primary rounded-lg w-full max-w-[425px] h-[400px] min-w-[325px] aspect-[5/6] overflow-auto">
-        <div class="flex justify-center">
-              <img
-                :src="employee.pic"
-                alt="Website testimonial"
-                class="min-w-2/3 translate-y-2 z-20"
-              >
-            </div>
+      <div class="bg-neutral p-6 border border-primary rounded-lg w-full max-w-[425px] h-[400px] min-w-[325px] aspect-[5/6] overflow-hidden relative">
+        <div class="absolute inset-0 flex items-center justify-center">
+          <img
+              :src="employee.pic"
+              :alt="`${employee.name}'s profile picture`"
+              class="w-full h-full object-cover"
+          >
+        </div>
       </div>
       <div class="bg-neutral p-6 border border-primary rounded-lg w-full max-w-[425px] h-[400px] min-w-[325px] aspect-[5/6] overflow-auto">
         <h2 class="font-bold text-base mb-4">

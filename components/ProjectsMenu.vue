@@ -44,7 +44,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref, onBeforeUnmount } from 'vue'
 
 interface Project {
   id: number
@@ -96,8 +96,7 @@ const fetchProjects = async () => {
     console.error('Error fetching projects:', error)
   }
 }
-
-onMounted(fetchProjects)
+fetchProjects()
 
 onBeforeUnmount(() => {
   cancelOpenTimer()

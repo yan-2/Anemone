@@ -1,34 +1,37 @@
 <template>
-    <div>
-      <ul>
-      <li v-for="project in projects" :key="project.id">
-        <NuxtLink :to = "`/projects/${project.id}`"> {{ project.name }}</NuxtLink>
+  <div>
+    <ul>
+      <li
+        v-for="project in projects"
+        :key="project.id"
+      >
+        <NuxtLink :to="`/projects/${project.id}`">
+          {{ project.name }}
+        </NuxtLink>
       </li>
     </ul>
-    </div>
+  </div>
 </template>
-  
-<script setup lang="ts">
-  useHead({
-    title: 'Projects',
-  })
 
-  interface Project {
-  id: number;
-  name: string;
-  description: string;
+<script setup lang="ts">
+useHead({
+  title: 'Projects',
+})
+
+interface Project {
+  id: number
+  name: string
+  description: string
 }
 
-const projects = ref<Project[]>([]);
+const projects = ref<Project[]>([])
 
 const fetchProjects = async () => {
-  const { data } = await useFetch<{ data: Project[] }>('/api/project');
+  const { data } = await useFetch<{ data: Project[] }>('/api/project')
   if (data.value) {
-    projects.value = data.value.data;
+    projects.value = data.value.data
   }
-};
+}
 
-onMounted(fetchProjects);
-  
+onMounted(fetchProjects)
 </script>
-  

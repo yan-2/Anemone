@@ -98,8 +98,8 @@ const fetchServices = async () => {
     console.error('Error fetching services:', error)
   }
 }
+fetchServices()
 
-onMounted(fetchServices)
 
 onBeforeUnmount(() => {
   cancelOpenTimer()

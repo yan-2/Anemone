@@ -46,14 +46,28 @@ module.exports = {
       // Custom animations
       animation: {
         wiggle: 'wiggle 0.3s ease-in-out 1',
+        shrink: 'shrink 0.3s ease-in-out forwards',
       },
       keyframes: {
         wiggle: {
           '0%, 100%': { transform: 'rotate(-4.5deg)' },
           '50%': { transform: 'rotate(4.5deg)' },
         },
+        shrink: {
+          '0%': { transform: 'scale(1)' },
+          '100%': { transform: 'scale(0.9)' },
+        },
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities }) {
+      const newUtilities = {
+        '.shrink-on-hover': {
+          '@apply transition-transform duration-300 ease-in-out hover:scale-90': {},
+        },
+      }
+      addUtilities(newUtilities)
+    },
+  ],
 }

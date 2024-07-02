@@ -29,6 +29,8 @@
             <ProjectsMenu v-else-if="item.text === 'Projects'" />
           </li>
         </ul>
+        <!-- Mobile Menu -->
+        <MobileMenu />
       </div>
     </div>
   </nav>
@@ -37,12 +39,10 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
 import ServicesMenu from '~/components/ServicesMenu.vue'
-import ProjectsMenu from '~/components/ProjectsMenu.vue' // Add this import
+import ProjectsMenu from '~/components/ProjectsMenu.vue'
+import MobileMenu from '~/components/MobileMenu.vue'
 
-// Exports component
-defineOptions({ name: 'AnemoneNavbar' })
-
-// List of navbar links
+// List of navbar links (you might want to import this from a shared config)
 const menuItems = ref([
   { text: 'Assistant', href: '/assistant' },
   { text: 'Center', href: '/center' },
@@ -50,6 +50,9 @@ const menuItems = ref([
   { text: 'Services', href: '/services' },
   { text: 'People', href: '/people' },
 ])
+
+// Exports component
+defineOptions({ name: 'AnemoneNavbar' })
 
 const route = useRoute()
 

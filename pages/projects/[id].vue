@@ -1,7 +1,6 @@
 <template>
-  <div class="relative grid grid-cols-1 grid-rows-1 justify-center items-center px-8 text-center">
-    <!-- Service Information Box -->
-    <div class="bg-neutral border border-primary max-w-4xl p-4 rounded-lg z-10">
+  <div class="flex justify-center items-center px-4 text-center">
+    <div class="bg-neutral border border-primary max-w-3xl py-8 px-12 rounded-xl shadow-md z-10">
       <div v-if="project">
         <h2 class="font-rosamila text-5xl text-primary">
           {{ project.name }}
@@ -9,40 +8,35 @@
         <p class="text-secondary mb-6">
           {{ project.tag }}
         </p>
-        <!-- Responsive grid -->
-        <div :class="responsiveGridClass">
-          <!-- Description -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 w-full justify-between items-center">
           <div class="text-left">
-            <h3 class="text-l font-bold mb-2">
+            <h3 class="font-bold mb-2">
               Description
             </h3>
-            <p class="text-primary mb-4">
+            <p class="text-primary">
               {{ project.description }}
             </p>
           </div>
-
-          <!-- Image -->
-          <div class="flex justify-center items-center">
+          <div class="w-full flex justify-center">
             <img
               :src="project.pic"
-              alt="Website testimonial"
-              class="min-w-2/3 translate-y-2 z-20"
+              :alt="project.name + ' logo'"
+              class="max-w-2xl h-auto object-cover"
             >
           </div>
         </div>
       </div>
-      <div v-else>
-        <p>Loading...</p>
-      </div>
+      <p v-else>
+        Loading...
+      </p>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, watch } from 'vue'
+import { ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useHead } from '@vueuse/head'
-import { useWindowSize } from '@vueuse/core'
 
 const route = useRoute()
 const id = parseInt(route.params.id as string, 10)
@@ -61,25 +55,15 @@ const fetchProjects = async () => {
   const { data } = await useFetch<{ data: Project[] }>('/api/project')
   if (data.value) {
     projects.value = data.value.data
-    console.log('Fetched projects:', projects.value)
   }
 }
+fetchProjects()
 
-onMounted(fetchProjects)
-
-const project = computed(() => projects.value.find(e => e.id === id))
-
-watch(project, (newProject) => {
-  if (newProject) {
-    useHead({
-      title: newProject.name,
-    })
+const project = computed(() => {
+  const foundProject = projects.value.find(e => e.id === id)
+  if (foundProject) {
+    useHead({ title: foundProject.name })
   }
-})
-
-const { width, height } = useWindowSize()
-
-const responsiveGridClass = computed(() => {
-  return width.value > height.value ? 'grid grid-cols-2 gap-8' : 'grid grid-rows-2 gap-8'
+  return foundProject
 })
 </script>

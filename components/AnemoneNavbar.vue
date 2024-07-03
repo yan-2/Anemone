@@ -3,7 +3,10 @@
     <div class="max-w-6xl mx-auto">
       <div class="flex items-center justify-between">
         <!-- Navbar logo -->
-        <NuxtLink to="/">
+        <NuxtLink
+          to="/"
+          class="z-50 relative"
+        >
           <svg
             class="w-11 h-7 fill-primary dark:fill-primary-dark shrink-on-hover"
             :class="{ 'scale-90': isLogoHovered }"
@@ -42,7 +45,7 @@
           </li>
         </ul>
         <!-- Mobile Menu -->
-        <MobileMenu />
+        <MobileMenu ref="mobileMenuRef" />
       </div>
     </div>
   </nav>
@@ -74,8 +77,7 @@ const isActive = (href: string) => route.path === href
 
 // State for logo hover
 const isLogoHovered = ref(false)
-</script>
 
-<style scoped>
-/* You can add any additional styles here if needed */
-</style>
+// Reference to the MobileMenu component
+const mobileMenuRef = ref(null)
+</script>

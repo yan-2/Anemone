@@ -1,18 +1,18 @@
 <template>
   <div>
     <AnemoneNavbar />
-    
+
     <div
-      class="tw-flex tw-my-5 lg:tw-my-0 lg:tw-h-[100vh] tw-flex-col tw-items-center tw-justify-center"
+      class="tw-flex  tw-my-5 lg:tw-my-0 lg:tw-h-[100vh] tw-flex-col tw-items-center tw-justify-center"
     >
-    <!-- title -->
+      <!-- title -->
       <h1 class="tw-text-5xl tw-font-black Font-titr">Center</h1>
       <h2 class="tw-text-gray-400">Let us introduce ourselves</h2>
 
       <div
         class="tw-flex tw-flex-col lg:tw-flex-row tw-items-center tw-mt-16 tw-gap-10 tw-px-10 tw-justify-center"
       >
-      <!-- Cards -->
+        <!-- Cards -->
         <div
           class="tw-flex tw-flex-col tw-p-6 tw-pb-28 tw-w-full tw-border tw-border-solid tw-border-stone-900 lg:tw-w-1/3 tw-h-full"
         >
@@ -59,16 +59,15 @@
           </div>
         </div>
 
-<!-- Map -->
+        <!-- Map -->
         <div
           class="tw-flex tw-flex-col tw-w-full tw-border tw-border-solid lg:tw-w-1/3 lg:tw-h-full sm:tw-h-[30vh]"
         >
-        <map/>
+          <map />
         </div>
       </div>
     </div>
-    
-  
+
     <AnemoneFooter />
   </div>
 </template>
@@ -76,7 +75,7 @@
 <script setup lang="ts">
 import AnemoneFooter from "~/components/anemoneFooter.vue";
 import AnemoneNavbar from "~/components/anemoneNavbar.vue";
-import map from "~/components/map.vue"
+import map from "~/components/map.vue";
 
 useHead({
   title: "Center",

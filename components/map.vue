@@ -4,7 +4,6 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 

@@ -3,7 +3,7 @@ import { DB } from '../utility'
 export default defineEventHandler(async (event) => {
   // Fetch employees
   const { id } = getQuery(event)
-  const query = DB.from('employee').select('*')
+  const query = DB.from('employee').select('*').order('id', { ascending: true })
 
   if (id) {
     query.eq('id', id)

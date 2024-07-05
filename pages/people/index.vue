@@ -12,7 +12,7 @@
         </div>
       </div>
     </div>
-    <Carousel  v-show="employees.length!=0 && !loading" v-bind="settings" :breakpoints="breakpoints" class="md:max-w-6xl mx-auto">
+    <Carousel  v-show="employees.length!=0 && !loading" v-bind="settings" :breakpoints="breakpoints" class="md:max-w-6xl mx-auto" :autoplay="2000" :wrap-around="true">
       <Slide v-for="item in employees" :key="item.id">
         <div class="carousel__item p-2 sm:p-0">
           <div class="border border-primary lg:p-3 sm:p-0 bg-white lg:ml-2 mr-2 relative">
@@ -52,7 +52,7 @@ interface Employee {
   project: any[];
 }
 let settings = {
-  itemsToShow: 4,
+  itemsToShow: 1,
   snapAlign: 'center',
 }
 let breakpoints = {
@@ -74,9 +74,7 @@ let breakpoints = {
 const loading = ref<boolean>(true);
 
 onMounted(() => {
-  // 修改 ref 的值需要通过 .value
   loading.value = false;
-  // console.log(loading.value); // 应该输出 false
 });
 
 let employees = ref<Employee[]>([]);

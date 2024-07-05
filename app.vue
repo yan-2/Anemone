@@ -19,6 +19,6 @@ useHead({
 </script>
 <style scoped lang="less">
 .app{
-  padding: 0 0 0 20px;
+  padding: 0 0 0 0px;
 }
 </style>

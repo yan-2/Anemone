@@ -7,24 +7,24 @@
           {{ service.name }}
         </h2>
         <p class="text-secondary mb-6">
-          a tag line thats not in our DB yet
+          {{service.tag}}
         </p>
         <!-- Responsive grid -->
         <div :class="responsiveGridClass">
-          <!-- Description -->
+          <!-- Description + Benefits-->
           <div class="text-left">
-            <h3 class="text-l font-bold mb-2">Description</h3>
+            <h3 class="text-l font-bold mb-2">Description & Benefits</h3>
             <p class="text-primary mb-4">
               {{ service.description }}
             </p>
           </div>
-          <!-- Benefits -->
-          <div class="text-left">
-            <h3 class="text-l font-bold mb-2">Benefits</h3>
-            <p class="text-primary mb-4">
-              {{ service.benefits }}
-            </p>
-          </div>
+          <div class="flex justify-center">
+              <img
+                :src="service.pic"
+                alt="Website testimonial"
+                class="min-w-2/3 translate-y-2 z-20"
+              >
+            </div>
           <!-- Availability -->
           <div class="text-left">
             <h3 class="text-l font-bold mb-2">Availability</h3>
@@ -34,14 +34,8 @@
             <p class="text-primary mb-4">
               To facilitate scheduling, we kindly request that you reserve your spot by emailing us at the address <a href="mailto:counseling@anemone.it" class="text-blue-500 underline">counseling@anemone.it</a>
             </p>
-            <div class="flex justify-center">
-              <img
-                :src="service.pic"
-                alt="Website testimonial"
-                class="min-w-2/3 translate-y-2 z-20"
-              >
-            </div>
           </div>
+
         </div>
         <div class="flex items-center justify-center mt-8">
         </div>
@@ -70,6 +64,7 @@ interface Service {
   id: number;
   name: string;
   description: string;
+  tag: string;
   benefits: string;
   availability: string;
   testimonial: string;

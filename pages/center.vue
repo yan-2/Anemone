@@ -9,7 +9,7 @@
         </div>
         <!-- Subtitle -->
         <div class="text-secondary-dark">
-          Let introduce ourselves
+          Let Us Introduce Ourselves
         </div>
       </div>
     </div>

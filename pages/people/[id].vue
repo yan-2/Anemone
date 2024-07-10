@@ -37,11 +37,30 @@
             Role
           </h2>
           <p class="mb-4">
-            {{ employee.role }}
+            {{ employeeFirstName }} is a {{ employee.role }} at Anemone
           </p>
           <h2 class="font-bold text-base mb-4">
-            Services & Projects
+            Activities
           </h2>
+          <p class="mb-4">
+            {{ employeeFirstName }} is involved in the following projects and services
+          </p>
+          <div v-if="employee.service && employee.service.length">
+            <h3 class="font-semibold text-sm mb-2">Services</h3>
+            <ul>
+              <li v-for="service in employee.service" :key="service.id">
+                <NuxtLink :to="`/services/${service.id}`" class = "text-hyperlinks">{{ service.name }}</NuxtLink>
+              </li>
+            </ul>
+          </div>
+          <div v-if="employee.project && employee.project.length">
+            <h3 class="font-semibold text-sm mb-2">Projects</h3>
+            <ul>
+              <li v-for="project in employee.project" :key="project.id">
+                <NuxtLink :to="`/projects/${project.id}`" class = "text-hyperlinks">{{ project.name }}</NuxtLink>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -56,14 +75,20 @@ import { useHead } from '@vueuse/head'
 const route = useRoute()
 const id = parseInt(route.params.id as string, 10)
 
+interface Activities {
+  id: number
+  name: string
+  description: string
+}
+
 interface Employee {
   id: number
   name: string
   pic: string
   role: string
   cv: string
-  service: any[]
-  project: any[]
+  service: Activities[]
+  project: Activities[]
 }
 
 const employees = ref<Employee[]>([])
@@ -81,6 +106,10 @@ const fetchEmployees = async () => {
 onMounted(fetchEmployees)
 
 const employee = computed(() => employees.value.find(e => e.id === id))
+
+const employeeFirstName = computed(() => {
+  return employee.value ? employee.value.name.split(' ')[0] : ''
+})
 
 watch(employee, (newPerson) => {
   if (newPerson) {

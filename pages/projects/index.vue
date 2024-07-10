@@ -8,7 +8,7 @@
         </div>
         <!-- Subtitle -->
         <div class="text-secondary-dark">
-          How we make a difference
+          How We Make A Difference
         </div>
       </div>
     </div>

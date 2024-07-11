@@ -12,7 +12,7 @@
         </div>
       </div>
     </div>
-    <Carousel v-show="projects.length != 0 && !loading" v-bind="settings" :breakpoints="breakpoints" class="md:max-w-6xl mx-auto">
+    <Carousel v-show="projects.length != 0 && !loading" v-bind="settings" :breakpoints="breakpoints" class="md:max-w-6xl mx-auto" :autoplay="2000" :wrap-around="true">
       <Slide v-for="item in projects" :key="item.id">
         <div class="carousel__item p-2 sm:p-0">
           <div class="border border-primary lg:p-3 sm:p-0 bg-white lg:ml-2 mr-2 relative box-equal-size">
@@ -53,7 +53,7 @@ interface Project {
 }
 
 let settings = {
-  itemsToShow: 4,
+  itemsToShow: 1,
   snapAlign: 'center',
 }
 let breakpoints = {

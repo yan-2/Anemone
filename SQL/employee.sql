@@ -3,4 +3,5 @@ CREATE TABLE Employee (
     name VARCHAR(100),
     role VARCHAR(100),
     cv TEXT,
+    pic TEXT,
 );

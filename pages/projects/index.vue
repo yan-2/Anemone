@@ -15,7 +15,7 @@
     <Carousel v-show="projects.length != 0 && !loading" v-bind="settings" :breakpoints="breakpoints" class="md:max-w-6xl mx-auto" :autoplay="2000" :wrap-around="true">
       <Slide v-for="item in projects" :key="item.id">
         <div class="carousel__item p-2 sm:p-0">
-          <div class="border border-primary lg:p-3 sm:p-0 bg-white lg:ml-2 mr-2 relative box-equal-size">
+          <div class="border border-primary lg:p-3 sm:p-0 pb-2 bg-white lg:ml-2 mr-2 relative box-equal-size">
             <div class="text-left p-4">
               <h2 class="text-lg font-semibold">{{ item.name }}</h2>
               <p class="text-base">{{ getFirstSentence(item.description) }}</p>

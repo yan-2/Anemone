@@ -15,7 +15,7 @@
     <Carousel  v-show="employees.length!=0 && !loading" v-bind="settings" :breakpoints="breakpoints" class="md:max-w-6xl mx-auto" :autoplay="2000" :wrap-around="true">
       <Slide v-for="item in employees" :key="item.id">
         <div class="carousel__item p-2 sm:p-0">
-          <div class="border border-primary lg:p-3 sm:p-0 bg-white lg:ml-2 mr-2 relative">
+          <div class="border border-primary lg:p-3 sm:p-0 pb-2 bg-white lg:ml-2 mr-2 relative">
             <!-- avatar -->
             <NuxtImg :src="item.pic"/>
             <div class="">

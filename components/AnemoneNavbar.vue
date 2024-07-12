@@ -54,9 +54,9 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
-import ServicesMenu from '~/components/ServicesMenu.vue'
-import ProjectsMenu from '~/components/ProjectsMenu.vue'
-import MobileMenu from '~/components/MobileMenu.vue'
+import ServicesMenu from '~/components/navbar/ServicesMenu.vue'
+import ProjectsMenu from '~/components/navbar/ProjectsMenu.vue'
+import MobileMenu from '~/components/navbar/MobileMenu.vue'
 
 // Navbar links
 const menuItems = ref([

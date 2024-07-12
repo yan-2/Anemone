@@ -9,7 +9,7 @@ export default defineNuxtConfig({
   components: { global: true },
   devtools: { enabled: true },
   ssr: true,
-  modules: ['@nuxt/eslint', '@nuxtjs/sitemap', 'vue3-carousel-nuxt', '@nuxt/image'],
+  modules: ['@nuxt/eslint', '@nuxtjs/sitemap', 'vue3-carousel-nuxt', '@nuxt/image',"nuxt-phosphor-icons"],
   postcss: {
     plugins: {
       tailwindcss: {},

@@ -19,7 +19,9 @@
           rel="noopener noreferrer"
           class="hover:text-primary dark:hover:text-primary-dark"
         >
-          <PhInstagramLogo :size="20" />
+          <PhosphorIconInstagramLogo
+              :size="20"
+            />
         </a>
         <!-- Twitter -->
         <a
@@ -28,7 +30,7 @@
           rel="noopener noreferrer"
           class="hover:text-primary dark:hover:text-primary-dark"
         >
-          <PhXLogo :size="20" />
+          <PhosphorIconXLogo :size="20" />
         </a>
         <!-- FAQ -->
         <NuxtLink
@@ -48,7 +50,6 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
 // Footer icons from Phosphoricons
-import { PhInstagramLogo, PhXLogo } from '@phosphor-icons/vue'
 
 // Exports component
 defineOptions({ name: 'AnemoneFooter' })

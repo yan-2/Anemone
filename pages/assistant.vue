@@ -102,7 +102,7 @@
             :disabled="!message.trim()"
             @click="sendMessage"
           >
-            <PhPaperPlane
+            <PhosphorIconPaperPlane
               :size="24"
               weight="fill"
             />
@@ -115,7 +115,7 @@
 
 <script setup>
 import { ref, watch, nextTick } from 'vue'
-import { PhPaperPlane } from '@phosphor-icons/vue'
+
 import { useAlfreud } from '~/assets/js/alfreud.js'
 
 definePageMeta({

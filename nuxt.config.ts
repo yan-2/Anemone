@@ -1,7 +1,10 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  // phosphor: {
+  //   expose: true,
+  // },
   site: {
-    url: 'https://anemone-ten.vercel.app',
+    url: 'https://anemone-n2be.vercel.app',
   },
   components: { global: true },
   devtools: { enabled: true },

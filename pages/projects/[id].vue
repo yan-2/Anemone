@@ -1,45 +1,57 @@
+<!-- HTML structure -->
 <template>
-  <div class="flex justify-center items-center px-4 text-center">
-    <div class="bg-neutral border border-primary max-w-3xl py-8 px-12 rounded-xl shadow-md z-10">
-      <div v-if="project">
-        <h2 class="font-rosamila text-5xl text-primary">
+  <div class="flex justify-center items-center px-6 py-3">
+    <!-- Card -->
+    <div class="max-w-3xl rounded-2xl bg-neutral border border-primary shadow-md text-center">
+      <div
+        v-if="project"
+        class="p-12"
+      >
+        <!-- Title -->
+        <h1 class="font-rosamila text-5xl text-primary mb-2">
           {{ project.name }}
-        </h2>
-        <p class="text-secondary mb-6">
+        </h1>
+        <!-- Subtitle -->
+        <h2 class="text-secondary mb-12">
           {{ project.tag }}
-        </p>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 w-full justify-between items-center">
+        </h2>
+        <!-- Project -->
+        <div class="grid grid-cols-1 md:grid-cols-[1.5fr_1fr] gap-12 w-full items-center">
+          <!-- Description -->
           <div class="text-left">
-            <h3 class="font-bold mb-2">
+            <h3 class="font-bold mb-1">
               Description
             </h3>
             <p class="text-primary">
               {{ project.description }}
             </p>
           </div>
-          <div class="w-full flex justify-center">
+          <!-- Image -->
+          <div class="flex justify-center">
             <img
               :src="project.pic"
-              :alt="project.name + ' logo'"
-              class="max-w-2xl h-auto object-cover"
+              :alt="project.name + ' image'"
+              class=""
             >
           </div>
         </div>
       </div>
-      <p v-else>
+      <!-- Loading -->
+      <p
+        v-else
+        class="p-6"
+      >
         Loading...
       </p>
     </div>
   </div>
 </template>
 
+<!-- Typescript code -->
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useHead } from '@vueuse/head'
-
-const route = useRoute()
-const id = parseInt(route.params.id as string, 10)
 
 interface Project {
   id: number
@@ -49,8 +61,11 @@ interface Project {
   pic: string
 }
 
+const route = useRoute()
+const id = parseInt(route.params.id as string, 10)
 const projects = ref<Project[]>([])
 
+// Fetches project data
 const fetchProjects = async () => {
   const { data } = await useFetch<{ data: Project[] }>('/api/project')
   if (data.value) {
@@ -59,6 +74,7 @@ const fetchProjects = async () => {
 }
 fetchProjects()
 
+// Sets page title
 const project = computed(() => {
   const foundProject = projects.value.find(e => e.id === id)
   if (foundProject) {

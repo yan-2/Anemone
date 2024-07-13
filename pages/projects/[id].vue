@@ -12,13 +12,13 @@
           {{ project.name }}
         </h1>
         <!-- Subtitle -->
-        <h2 class="text-secondary mb-12">
+        <h2 class="text-secondary mb-8">
           {{ project.tag }}
         </h2>
         <!-- Project -->
         <div class="grid grid-cols-1 md:grid-cols-[1.5fr_1fr] gap-12 w-full items-center">
           <!-- Description -->
-          <div class="text-left">
+          <div class="text-left self-start h-full">
             <h3 class="font-bold mb-1">
               Description
             </h3>
@@ -31,7 +31,6 @@
             <img
               :src="project.pic"
               :alt="project.name + ' image'"
-              class=""
             >
           </div>
         </div>

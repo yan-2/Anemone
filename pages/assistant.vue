@@ -14,12 +14,42 @@
           >
             <div class="text-center">
               <!-- Title -->
-              <div class="font-rosamila text-5xl text-primary-dark mb-2">
+              <h1 class="font-rosamila text-5xl text-primary-dark mb-2">
                 Alfreud
-              </div>
+              </h1>
               <!-- Subtitle -->
-              <div class="text-secondary-dark">
-                How can I help you today?
+              <h2 class="text-primary-dark mb-2">
+                How do you feel today?
+              </h2>
+              <!-- Description -->
+              <h2 class="text-secondary-dark mb-8 max-w-md">
+                Seek immediate and private support, open up about your emotions or explore Anemone.
+              </h2>
+              <!-- Features -->
+              <div class="flex justify-center">
+                <div class="grid grid-rows-1 grid-cols-3 gap-8">
+                  <div class="flex flex-col items-center justify-center rounded-2xl p-3 border border-secondary-dark/30 text-primary-dark aspect-square w-24">
+                    <PhosphorIconBrain
+                      :size="24"
+                      class="mb-2 text-hyperlinks"
+                    />
+                    <span>Smart</span>
+                  </div>
+                  <div class="flex flex-col items-center justify-center rounded-2xl p-3 border border-secondary-dark/30 text-primary-dark aspect-square w-24">
+                    <PhosphorIconShield
+                      :size="24"
+                      class="mb-2"
+                    />
+                    <span>Secure</span>
+                  </div>
+                  <div class="flex flex-col items-center justify-center rounded-2xl p-3 border border-secondary-dark/30 text-primary-dark aspect-square w-24">
+                    <PhosphorIconHeart
+                      :size="24"
+                      class="mb-2 text-action"
+                    />
+                    <span>Empathic</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -73,7 +103,7 @@
       </div>
       <!-- INPUT BAR -->
       <div class="flex justify-center w-full px-4">
-        <div class="max-w-3xl w-full bg-ternary flex items-end py-4 border border-secondary-dark/5 rounded-xl shadow-lg">
+        <div class="max-w-3xl w-full bg-ternary flex items-end py-4 border border-secondary-dark/5 rounded-2xl shadow-lg">
           <div class="flex-grow flex items-center px-4 py-0.5">
             <!-- Textarea -->
             <textarea

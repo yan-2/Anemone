@@ -23,7 +23,7 @@
               </h2>
               <!-- Description -->
               <h2 class="text-secondary-dark mb-8 max-w-md">
-                Seek immediate and private support, open up about your emotions or explore Anemone.
+                Seek immediate and confidential support, open up about your emotions or explore Anemone
               </h2>
               <!-- Features -->
               <div class="flex justify-center">

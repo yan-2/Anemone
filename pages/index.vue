@@ -16,13 +16,15 @@
         class="min-w-2/3 translate-y-2 z-20"
       >
       <!-- Splash information box -->
-      <div class="bg-neutral border border-primary max-w-xl p-4 rounded-lg z-10">
-        <h2 class="font-rosamila text-5xl text-primary">
+      <div class="max-w-xl p-8 z-10 rounded-2xl bg-neutral border border-primary shadow-md text-center">
+        <!-- Title -->
+        <h1 class="font-rosamila text-5xl text-primary mb-2">
           Anemone
-        </h2>
-        <p class="text-secondary mb-4">
+        </h1>
+        <!-- Subtitle -->
+        <h2 class="text-secondary mb-8">
           It's time to bloom again
-        </p>
+        </h2>
         <p class="text-primary mb-8">
           Hello stranger!<br>
           Whether you're encountering challenges or seeking support,

@@ -1,10 +1,12 @@
 <template>
-  <NuxtLink
-    to="/request"
-    class="inline-block bg-action text-neutral px-4 py-2 text-sm rounded-md hover:bg-action/85 transition-all duration-200 ease-in-out"
-  >
-    Request Help
-  </NuxtLink>
+  <div class="flex justify-center w-full">
+    <NuxtLink
+      to="/"
+      class="w-full max-w-[256px] bg-primary hover:bg-primary/85 hover:cursor-pointer text-neutral py-2 px-4 rounded-lg transition duration-300 text-center"
+    >
+      Request Help
+    </NuxtLink>
+  </div>
 </template>
 
 <script setup lang="ts">

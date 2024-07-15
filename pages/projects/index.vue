@@ -21,7 +21,12 @@
               <p class="text-base">{{ getFirstSentence(item.description) }}</p>
             </div>
             <div class="flex justify-center p-4">
-              <NuxtImg :src="item.pic" class="carousel-image" />
+              <NuxtImg 
+              :src="item.pic" 
+              class="carousel-image" 
+              :alt=" 'This image represents the ' + item.name + ' project'"
+
+              />
             </div>
             <div>
               <NuxtLink :to="`/projects/${item.id}`" class="bg-accent text-white px-4 py-2 mt-4 inline-block">

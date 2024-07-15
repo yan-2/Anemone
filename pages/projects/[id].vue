@@ -30,7 +30,7 @@
           <div class="flex justify-center">
             <img
               :src="project.pic"
-              :alt="project.name + ' image'"
+              :alt=" 'This image represents the ' + project.name + ' project'"
             >
           </div>
         </div>

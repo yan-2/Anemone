@@ -32,6 +32,7 @@
                     <PhosphorIconBrain
                       :size="24"
                       class="mb-2 text-hyperlinks"
+                      title="smart"
                     />
                     <span>Smart</span>
                   </div>
@@ -131,6 +132,7 @@
             :class="message.trim() ? 'text-primary-dark animate-wiggle' : 'text-secondary-dark'"
             :disabled="!message.trim()"
             @click="sendMessage"
+            aria-label="Send message"
           >
             <PhosphorIconPaperPlane
               :size="24"

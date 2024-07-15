@@ -31,7 +31,7 @@
               <div class="relative w-full overflow-hidden">
                 <img
                   :src="item.pic"
-                  :alt="`${item.name}'s picture`"
+                  :alt="`This is a picture of the employee called ${item.name}`"
                   class="w-full h-auto object-cover"
                 >
               </div>
@@ -151,8 +151,8 @@ console.log(employees.value)
 .carousel__pagination-button::after {
   display: block;
   content: '';
-  width: var(--vc-pgn-size, 10px);
-  height: var(--vc-pgn-size, 10px);
+  width: var(--vc-pgn-size, 16px);
+  height: var(--vc-pgn-size, 16px);
   border-radius: 2px; /* Rounded corners for squares */
   background-color: rgb(161, 159, 185, 0.30);
   transition: transform 0.3s ease; /* Smooth transition for rotation */
@@ -168,7 +168,7 @@ console.log(employees.value)
 @media (min-width: 1280px) {
   .carousel__prev,
   .carousel__next {
-    padding: 0 16px 0 16px;
+    padding: 0 32px 0 32px;
   }
 }
 

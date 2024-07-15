@@ -102,4 +102,7 @@ const goToHomepage = () => {
   requestType.value = ''
   message.value = ''
 }
+useHead({
+  title: 'Request',
+})
 </script>

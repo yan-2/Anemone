@@ -1,4 +1,4 @@
-<template xmlns="http://www.w3.org/1999/html">
+<template>
   <div class="flex justify-center px-6 py-3">
     <div class="text-center">
       <!-- Title -->
@@ -142,7 +142,7 @@ console.log(employees.value)
 .carousel__pagination-button {
   display: block;
   border: 0;
-  margin: 0;
+  margin: 1px;
   cursor: pointer;
   padding: var(--vc-pgn-margin);
   background: transparent;
@@ -151,8 +151,8 @@ console.log(employees.value)
 .carousel__pagination-button::after {
   display: block;
   content: '';
-  width: var(--vc-pgn-size, 16px);
-  height: var(--vc-pgn-size, 16px);
+  width: var(--vc-pgn-size, 10px);
+  height: var(--vc-pgn-size, 10px);
   border-radius: 2px; /* Rounded corners for squares */
   background-color: rgb(161, 159, 185, 0.30);
   transition: transform 0.3s ease; /* Smooth transition for rotation */

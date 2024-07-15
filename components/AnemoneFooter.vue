@@ -18,6 +18,7 @@
           target="_blank"
           rel="noopener noreferrer"
           class="hover:text-primary dark:hover:text-primary-dark"
+          aria-label="Visit Anemone Rescue on Instagram"
         >
           <PhosphorIconInstagramLogo
               :size="20"
@@ -29,6 +30,7 @@
           target="_blank"
           rel="noopener noreferrer"
           class="hover:text-primary dark:hover:text-primary-dark"
+          aria-label="Visit Anemone Rescue on Twitter"
         >
           <PhosphorIconXLogo :size="20" />
         </a>

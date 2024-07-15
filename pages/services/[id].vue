@@ -39,7 +39,7 @@
           <div class="flex justify-center">
             <img
               :src="service.pic"
-              :alt="service.name + ' image'"
+              :alt=" 'This image represents the ' + service.name + ' service'"
             >
           </div>
         </div>

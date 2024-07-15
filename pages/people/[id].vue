@@ -30,7 +30,7 @@
             <div class="relative w-full aspect-[5/6] rounded-2xl overflow-hidden shadow-md">
               <img
                 :src="employee.pic"
-                :alt="`${employee.name}'s picture`"
+                :alt="`This is a picture of the employee called ${employee.name}`"
                 class="object-cover w-full h-full"
               >
             </div>

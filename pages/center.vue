@@ -54,6 +54,7 @@
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d28287.838010618838!2d9.490880733149849!3d45.29814216637437!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47812c22484b7b2b%3A0x82e30781a28f0d75!2sVia%20Vittime%20della%20Violenza%2C%2026900%20Lodi%20LO!5e0!3m2!1sit!2sit!4v1719150273224!5m2!1sit!2sit"
           class="w-full h-full"
           loading="lazy"
+          aria-label="Interactive Map showing centre location"
           referrerpolicy="no-referrer-when-downgrade"
         />
       </div>

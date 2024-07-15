@@ -38,10 +38,10 @@
           class="w-full p-4 rounded-lg resize-none h-60 border border-secondary/50 mb-2 focus:outline-none"
           @input="updateCharCount"
         />
-        <div class="flex items-center justify-between mb-8 mx-4">
+        <div class="flex items-center justify-between mb-8">
           <div class="flex flex-col items-start">
             <span
-              class="px-4 py-1 text-sm rounded-full font-bold"
+              class="px-4 py-1 text-sm rounded-full"
               :class="[levelColor, levelBgColor]"
             >{{ levelText }}</span>
           </div>

@@ -29,6 +29,8 @@ module.exports = {
         action: '#D16464',
         accent: '#8185E7',
         neutral: '#FFFFFF',
+        bulbasaur: '#4CAF50',
+        charizard: '#FFA500',
         hyperlinks: '#649DD1',
       },
       // Fonts and text formatting
@@ -47,6 +49,7 @@ module.exports = {
       animation: {
         wiggle: 'wiggle 0.3s ease-in-out 1',
         shrink: 'shrink 0.3s ease-in-out forwards',
+        expand: 'expand 0.3s ease-in-out forwards',
       },
       keyframes: {
         wiggle: {
@@ -56,6 +59,10 @@ module.exports = {
         shrink: {
           '0%': { transform: 'scale(1)' },
           '100%': { transform: 'scale(0.9)' },
+        },
+        expand: {
+          '0%': { transform: 'scale(1)' },
+          '100%': { transform: 'scale(1.05)' },
         },
       },
     },

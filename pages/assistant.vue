@@ -147,7 +147,9 @@
 import { ref, watch, nextTick } from 'vue'
 
 import { useAlfreud } from '~/assets/js/alfreud.js'
-
+useHead({
+  title: 'Assistant',
+})
 definePageMeta({
   layout: 'chatbot',
 })

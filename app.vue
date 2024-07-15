@@ -25,7 +25,7 @@ useHead({
   titleTemplate: '%s - Anemone',
   meta: [
     {name: 'description', content: 'Join us in our mission to empower women or let us help you.'},
-    {name: 'keywords', content: 'women, help you'},
+    {name: 'keywords', content: 'Women\'s Assistance, Abuse Support, Empowering Women, Anemone Nonprofit, Counseling Services'},
     {name: 'viewport', content: 'width=device-width, initial-scale=1'},
     {'charset': 'utf-8'}
   ],

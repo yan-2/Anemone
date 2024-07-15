@@ -41,6 +41,6 @@ import RequestButton from '~/components/RequestButton.vue'
 // Declares the adopted layout
 definePageMeta({ layout: 'default' })
 useHead({
-  title: 'Home',
+  title: 'Home'
 })
 </script>

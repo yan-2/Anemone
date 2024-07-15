@@ -2,7 +2,7 @@
   <div class="flex justify-center px-6 py-3 w-full">
     <div
       v-if="!messageSubmitted"
-      class="flex flex-col max-w-3xl w-full rounded-2xl bg-neutral border border-primary shadow-md p-8"
+      class="flex flex-col max-w-3xl w-full rounded-2xl"
     >
       <h1 class="font-rosamila text-5xl text-primary mb-2 text-center">
         Request
@@ -11,7 +11,7 @@
         Anemone at your rescue
       </h2>
       <form @submit.prevent="handleSubmit">
-        <div class="px-4 py-2 mb-4 rounded-lg border border-secondary/50">
+        <div class="px-4 py-2 mb-4 rounded-lg border border-primary shadow-md bg-neutral">
           <select
             v-model="requestType"
             class="w-full focus:outline-none focus:cursor-pointer"
@@ -31,26 +31,27 @@
             </option>
           </select>
         </div>
-        <textarea
-          v-model="message"
-          placeholder="Tell us what is going on"
-          :maxlength="charLimit"
-          class="w-full p-4 rounded-lg resize-none h-60 border border-secondary/50 mb-2 focus:outline-none"
-          @input="updateCharCount"
-        />
-        <div class="flex items-center justify-between mb-8">
-          <div class="flex flex-col items-start">
-            <span
-              class="px-4 py-1 text-sm rounded-full"
-              :class="[levelColor, levelBgColor]"
-            >{{ levelText }}</span>
-          </div>
-          <div>
-            <span
-              class="font-bold"
-              :class="chars < 400 ? 'text-primary' : 'text-action'"
-            >{{ chars }}</span>
-            <span class="text-secondary">/{{ charLimit }}</span>
+        <div class="flex flex-col w-full rounded-lg border shadow-md bg-neutral border-primary mb-8 overflow-hidden">
+          <textarea
+            v-model="message"
+            placeholder="Tell us what is going on"
+            :maxlength="charLimit"
+            class="w-full p-4 resize-none min-h-60 h-fit mb-4 focus:outline-none"
+            @input="updateCharCount"
+          />
+          <div class="flex items-center justify-between mb-4 mx-4">
+            <div class="flex flex-col items-start">
+              <span
+                class="px-4 py-1 rounded-lg"
+                :class="[levelColor, levelBgColor]"
+              >{{ levelText }}</span>
+            </div>
+            <div>
+              <span
+                :class="chars < 400 ? 'text-primary' : 'text-action'"
+              >{{ chars }}</span>
+              <span class="text-secondary">/{{ charLimit }}</span>
+            </div>
           </div>
         </div>
         <div class="flex justify-center w-full">

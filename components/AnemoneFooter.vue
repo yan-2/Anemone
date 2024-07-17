@@ -1,3 +1,4 @@
+<!-- HTML structure -->
 <template>
   <div class="flex justify-center text-secondary dark:fill-secondary-dark">
     <footer class="p-6">
@@ -18,19 +19,17 @@
           target="_blank"
           rel="noopener noreferrer"
           class="hover:text-primary dark:hover:text-primary-dark"
-          aria-label="Visit Anemone Rescue on Instagram"
+          aria-label="Visit Anemone Instagram page"
         >
-          <PhosphorIconInstagramLogo
-              :size="20"
-            />
+          <PhosphorIconInstagramLogo :size="20" />
         </a>
-        <!-- Twitter -->
+        <!-- X -->
         <a
           href="https://x.com/anemonerescue?s=21"
           target="_blank"
           rel="noopener noreferrer"
           class="hover:text-primary dark:hover:text-primary-dark"
-          aria-label="Visit Anemone Rescue on Twitter"
+          aria-label="Visit Anemone X page"
         >
           <PhosphorIconXLogo :size="20" />
         </a>
@@ -49,15 +48,15 @@
   </div>
 </template>
 
+<!-- Typescript code -->
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
-// Footer icons from Phosphoricons
 
 // Exports component
 defineOptions({ name: 'AnemoneFooter' })
 
 const route = useRoute()
 
-// Function to check if the current route matches the given path
+// Checks if the current route matches the path [ used for text dynamic bolding ]
 const isActive = (path: string) => route.path === path
 </script>

@@ -1,5 +1,6 @@
+<!-- HTML structure -->
 <template>
-  <nav class="w-full p-3.5 relative text-secondary dark:text-secondary-dark">
+  <nav class="w-full py-6 px-6 relative text-secondary dark:text-secondary-dark">
     <div class="max-w-6xl mx-auto">
       <div class="flex items-center justify-between">
         <!-- Navbar logo -->
@@ -9,14 +10,11 @@
           aria-label="Home"
         >
           <svg
-            class="w-11 h-7 fill-primary dark:fill-primary-dark shrink-on-hover"
-            :class="{ 'scale-90': isLogoHovered }"
+            class="w-11 h-7 fill-primary dark:fill-primary-dark md:hover:animate-shrink"
             viewBox="0 0 58 24"
-            @mouseenter="isLogoHovered = true"
-            @mouseleave="isLogoHovered = false"
           >
-            <title>Anemone Company Logo</title>
-            <desc>This is the logo of the company, depicting a modern design with primary colors.</desc>
+            <title>Anemone Logo</title>
+            <desc>Modern logo with primary colors representing the center's identity</desc>
             <path d="M19.3588 15C18.8021 19.8345 14.6952 23.5885 9.7115 23.5885C4.34799 23.5885 0 19.2405 0 13.877C0 8.51351 4.34799 4.16553 9.7115 4.16553C14.7794 4.16553 18.9406 8.04744 19.3839 13L34.9084 13C30.5948 11.5851 25.3472 8.17951 26.2916 0L39.1881 13L56.1802 13V15L19.3588 15Z" />
           </svg>
         </NuxtLink>
@@ -37,6 +35,7 @@
             >
               {{ item.text }}
             </NuxtLink>
+            <!-- Floating menus -->
             <ServicesMenu
               v-else-if="item.text === 'Services'"
               :class="{ 'text-primary dark:text-primary-dark': isActive('/services') }"
@@ -48,12 +47,13 @@
           </li>
         </ul>
         <!-- Mobile Menu -->
-        <MobileMenu ref="mobileMenuRef" />
+        <MobileMenu ref="mobileMenu" />
       </div>
     </div>
   </nav>
 </template>
 
+<!-- Typescript code -->
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
@@ -74,13 +74,8 @@ const menuItems = ref([
 defineOptions({ name: 'AnemoneNavbar' })
 
 const route = useRoute()
+const mobileMenu = ref(null)
 
 // Checks if the current route matches the menu link
 const isActive = (href: string) => route.path === href
-
-// State for logo hover
-const isLogoHovered = ref(false)
-
-// Reference to the MobileMenu component
-const mobileMenuRef = ref(null)
 </script>

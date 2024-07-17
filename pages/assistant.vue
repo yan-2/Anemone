@@ -14,7 +14,7 @@
           >
             <div class="text-center">
               <!-- Title -->
-              <h1 class="font-rosamila text-5xl text-primary-dark mb-2">
+              <h1 class="font-rosamila text-5xl text-primary-dark mb-1">
                 Alfreud
               </h1>
               <!-- Subtitle -->

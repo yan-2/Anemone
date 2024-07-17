@@ -7,7 +7,7 @@
     >
       <div class="text-center">
         <!-- Title -->
-        <h1 class="font-rosamila text-5xl text-primary mb-2">
+        <h1 class="font-rosamila text-5xl text-primary mb-1">
           {{ employee.name }}
         </h1>
         <!-- Subtitle -->

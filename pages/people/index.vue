@@ -2,11 +2,11 @@
   <div class="flex justify-center px-6 py-3">
     <div class="text-center">
       <!-- Title -->
-      <h1 class="font-rosamila text-5xl text-primary mb-2">
+      <h1 class="font-rosamila text-5xl text-primary mb-1">
         People
       </h1>
       <!-- Subtitle -->
-      <h2 class="text-secondary mb-8">
+      <h2 class="text-secondary mb-4">
         Meet our stunning team
       </h2>
       <Carousel
@@ -35,13 +35,14 @@
                   class="w-full h-auto object-cover"
                 >
               </div>
-              <div class="px-4 pt-4">
+              <div class="p-4">
                 <h2 class="font-bold mb-1">
                   {{ item.name }}
                 </h2>
                 <p class="text-secondary mb-4">
                   {{ item.role }}
                 </p>
+                <DiscoverButton />
               </div>
             </div>
           </NuxtLink>
@@ -69,7 +70,7 @@
             </template>
           </Navigation>
           <!-- Dots -->
-          <div class="flex w-full justify-center items-center mt-4">
+          <div class="flex w-full justify-center items-center">
             <Pagination />
           </div>
         </template>
@@ -80,6 +81,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
+import DiscoverButton from '~/components/DiscoverButton.vue'
 
 useHead({
   title: 'People',
@@ -99,16 +101,14 @@ const settings = {
   snapAlign: 'center',
 }
 const breakpoints = {
-  200: {
-    itemsToShow: 1,
-    snapAlign: 'center',
+  620: {
+    itemsToShow: 2,
+    snapAlign: 'start',
   },
-  // 700px and up
-  700: {
+  830: {
     itemsToShow: 3,
-    snapAlign: 'center',
+    snapAlign: 'start',
   },
-  // 1024 and up
   1024: {
     itemsToShow: 4,
     snapAlign: 'start',
@@ -131,7 +131,6 @@ console.log(employees.value)
 .carousel__prev,
 .carousel__next {
   position: absolute;
-  padding: 0 -32px 0 -32px;
 }
 
 .carousel__pagination {
@@ -163,16 +162,7 @@ console.log(employees.value)
   transform: rotate(45deg); /* Rotate active square by 45 degrees */
 }
 
-
-
-@media (min-width: 1280px) {
-  .carousel__prev,
-  .carousel__next {
-    padding: 0 32px 0 32px;
-  }
-}
-
-@media (max-width: 700px) {
+@media (max-width: 619px) {
   .carousel__pagination {
     display: none;
   }

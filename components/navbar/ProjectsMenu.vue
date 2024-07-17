@@ -1,3 +1,4 @@
+<!-- HTML structure -->
 <template>
   <div class="relative group">
     <!-- Projects -->
@@ -15,7 +16,7 @@
       Projects
     </NuxtLink>
 
-    <!-- Menu with subtopics -->
+    <!-- Submenu -->
     <transition
       enter-active-class="transition ease-out duration-200"
       enter-from-class="transform opacity-0 scale-95"
@@ -24,13 +25,13 @@
       leave-from-class="transform opacity-100 scale-100"
       leave-to-class="transform opacity-0 scale-95"
     >
-      <!-- Menu -->
+      <!-- Box -->
       <div
         v-if="isOpen"
         class="absolute left-1/2
-        mt-3.5 rounded-lg
-        border border-secondary-dark/30 dark:border-primary
-        shadow-md bg-ternary dark:bg-neutral
+        mt-2 rounded-xl
+        border border-primary dark:border-secondary-dark/30
+        shadow-md bg-neutral dark:bg-ternary
         transform -translate-x-1/2
         z-50"
         @mouseenter="toggleOpen(true)"
@@ -40,9 +41,9 @@
           class="py-2 px-6 flex"
           role="menu"
           aria-orientation="horizontal"
-          aria-labelledby="options-menu"
+          aria-labelledby="projects-menu"
         >
-          <!-- Items column -->
+          <!-- Column -->
           <div
             v-for="(column, columnIndex) in projectsCols"
             :key="columnIndex"
@@ -54,10 +55,10 @@
               :key="project.id"
               :to="`/projects/${project.id}`"
               :class="[
-                'block py-2 hover:text-primary-dark hover:dark:text-primary',
+                'block py-2 hover:text-primary hover:dark:text-primary-dark',
                 route.path === `/projects/${project.id}`
-                  ? 'font-bold text-primary-dark dark:text-primary'
-                  : 'text-secondary-dark dark:text-secondary',
+                  ? 'font-bold text-primary dark:text-primary-dark'
+                  : 'text-secondary dark:text-secondary-dark',
               ]"
               role="menuitem"
             >
@@ -70,20 +71,22 @@
   </div>
 </template>
 
+<!-- Typescript code -->
 <script setup lang="ts">
 import { ref, onBeforeUnmount, computed } from 'vue'
 import { useRoute } from 'vue-router'
 
 // Project object
 interface Project {
+  id: number
   name: string
 }
 
 // Functional support elements
 const isOpen = ref(false)
 const projects = ref<Project[]>([])
-let timer: ReturnType<typeof setTimeout> | null = null
 const route = useRoute()
+let timer: ReturnType<typeof setTimeout> | null = null
 
 // Organizes the retrieved projects in three cols
 const projectsCols = computed(() => {
@@ -109,7 +112,7 @@ const fetchProjects = async () => {
       projects.value = data.value.data
     }
   }
-  catch (error) { console.error('Error fetching projects:', error) }
+  catch (error) { console.error('Projects fetching failed with', error) }
 }
 fetchProjects()
 

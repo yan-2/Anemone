@@ -5,15 +5,15 @@
     <div class="max-w-6xl rounded-2xl bg-neutral border border-primary shadow-md text-center">
       <div
         v-if="service"
-        class="p-12"
+        class="p-8"
       >
         <!-- Title -->
-        <h1 class="font-rosamila text-5xl text-primary mb-2">
+        <h1 class="font-rosamila text-5xl text-primary mb-1">
           {{ service.name }}
         </h1>
         <!-- Subtitle -->
         <h2 class="text-secondary mb-8">
-          {{ service.tag }}
+          {{ service.tag.charAt(0).toUpperCase() + service.tag.slice(1).toLowerCase() }}
         </h2>
         <!-- Service -->
         <div class="grid grid-cols-1 lg:grid-cols-[1.5fr_1.5fr_1.25fr] gap-12 w-full items-center mb-8">
@@ -36,32 +36,32 @@
             </p>
           </div>
           <!-- Image -->
-          <div class="flex justify-center">
+          <div class="flex justify-center max-w-sm mx-auto">
             <img
               :src="service.pic"
               :alt=" 'This image represents the ' + service.name + ' service'"
+              class="w-full h-auto object-cover"
             >
           </div>
         </div>
         <!-- Testimonial -->
-        <div class="text-center">
-          <!-- Comment -->
-          <p class="text-secondary">
-            Testimonial message
-          </p>
-          <!-- Author -->
-          <p class="font-bold text-secondary">
-            <span>Maria</span>.<span>37</span>
-          </p>
+        <div class="flex items-center justify-center w-full opacity-0 animate-faded">
+          <div class="max-w-[260px] sm:max-w-full text-center">
+            <!-- Comment -->
+            <p class="text-secondary mb-1">
+              {{ comment.comment }}
+            </p>
+            <!-- Author -->
+            <p class="font-bold text-secondary">
+              <span>{{ comment.name }}</span>.<span>{{ comment.age }}</span>
+            </p>
+          </div>
         </div>
       </div>
       <!-- Loading -->
-      <p
-        v-else
-        class="p-6"
-      >
-        Loading...
-      </p>
+      <div v-else>
+        <LoadingPlaceholder />
+      </div>
     </div>
   </div>
 </template>
@@ -71,6 +71,7 @@
 import { ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useHead } from '@vueuse/head'
+import LoadingPlaceholder from '~/components/LoadingPlaceholder.vue'
 
 interface Service {
   id: number
@@ -82,10 +83,21 @@ interface Service {
   testimonial: string
   pic: string
 }
-
+interface Comment {
+  id: number
+  name: string
+  age: number
+  comment: string
+}
+// Function to get a random element from the array
+function getRandomElement(arr) {
+  const randomIndex = Math.floor(Math.random() * arr.length)
+  return arr[randomIndex]
+}
 const route = useRoute()
 const id = parseInt(route.params.id as string, 10)
 const services = ref<Service[]>([])
+const comment = ref<{ [key: string]: Comment }>({})
 
 // Fetches service data
 const fetchServices = async () => {
@@ -94,7 +106,14 @@ const fetchServices = async () => {
     services.value = data.value.data
   }
 }
+const fetchComment = async () => {
+  const { data } = await useFetch<{ data: Comment[] }>(`/api/testimonial?serviceID=${id}`)
+  if (data.value) {
+    comment.value = getRandomElement(data.value.data)
+  }
+}
 fetchServices()
+fetchComment()
 
 // Sets page title
 const service = computed(() => {

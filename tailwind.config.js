@@ -50,6 +50,7 @@ module.exports = {
         wiggle: 'wiggle 0.3s ease-in-out 1',
         shrink: 'shrink 0.3s ease-in-out forwards',
         expand: 'expand 0.3s ease-in-out forwards',
+        faded: 'fade 1s ease-out 0.75s forwards',
       },
       keyframes: {
         wiggle: {
@@ -64,17 +65,12 @@ module.exports = {
           '0%': { transform: 'scale(1)' },
           '100%': { transform: 'scale(1.05)' },
         },
+        fade: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
       },
     },
   },
-  plugins: [
-    function ({ addUtilities }) {
-      const newUtilities = {
-        '.shrink-on-hover': {
-          '@apply transition-transform duration-300 ease-in-out hover:scale-90': {},
-        },
-      }
-      addUtilities(newUtilities)
-    },
-  ],
+  plugins: [],
 }

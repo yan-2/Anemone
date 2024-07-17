@@ -2,9 +2,9 @@ import { ref, computed, onMounted, nextTick, watch } from 'vue'
 
 export function useAlfreud() {
   const MAX_CHARS = 200
-  const API_KEY = 'sk-proj-RUu36TvmdqOIpjdRnGsUT3BlbkFJ7ys8VJKyVffCx8i3vIB7'
+  const API_KEY = 'sk-proj-Um1J9otI2vl6USr4hFtNT3BlbkFJKrENSLfucl7RpH4ZPVNN'
   const API_URL = 'https://api.openai.com/v1/chat/completions'
-
+  
   const message = ref('')
   const textareaRef = ref(null)
   const showLogo = ref(true)

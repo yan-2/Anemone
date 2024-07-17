@@ -16,37 +16,36 @@
         class="md:max-w-6xl mx-auto"
         :wrap-around="true"
       >
-        <!-- Card -->
-        <Slide
-          v-for="item in employees"
-          :key="item.id"
-          class="py-8"
-        >
-          <NuxtLink
-            :to="`/people/${item.id}`"
-            class="sm:hover:animate-expand hover:cursor-pointer"
+          <Slide
+              v-for="item in employees"
+              :key="item.id"
+              class="md:py-8"
           >
-            <div class="border border-primary bg-neutral rounded-xl mx-4 overflow-hidden shadow-md">
-              <!-- Image -->
-              <div class="relative w-full overflow-hidden">
-                <img
-                  :src="item.pic"
-                  :alt="`This is a picture of the employee called ${item.name}`"
-                  class="w-full h-auto object-cover"
-                >
-              </div>
-              <div class="p-4">
-                <h2 class="font-bold mb-1">
-                  {{ item.name }}
-                </h2>
-                <p class="text-secondary mb-4">
-                  {{ item.role }}
-                </p>
-                <DiscoverButton />
-              </div>
-            </div>
-          </NuxtLink>
-        </Slide>
+              <NuxtLink
+                  :to="`/people/${item.id}`"
+                  class="sm:hover:animate-expand hover:cursor-pointer carousel__item"
+              >
+                  <div class="border border-primary bg-neutral rounded-xl  overflow-hidden shadow-md md:mx-4">
+                      <!-- Image -->
+                      <div class="relative md:w-full overflow-hidden">
+                          <img
+                              :src="item.pic"
+                              :alt="`This is a picture of the employee called ${item.name}`"
+                              class="w-full h-auto object-cover"
+                          >
+                      </div>
+                      <div class="info-container md:p-4">
+                          <h2 class="font-bold md:mb-1">
+                              {{ item.name }}
+                          </h2>
+                          <p class="text-secondary md:mb-4">
+                              {{ item.role }}
+                          </p>
+                          <DiscoverButton />
+                      </div>
+                  </div>
+              </NuxtLink>
+          </Slide>
         <template #addons>
           <!-- Arrows -->
           <Navigation>
@@ -175,5 +174,26 @@ console.log(employees.value)
   .carousel__pagination {
     display: none;
   }
+    .info-container{
+        background: white;
+        position: absolute;
+        width: 100%;
+        left: 0;
+        bottom: 0;
+        /*display: none;*/
+    }
+}
+.carousel__item {
+    /*min-height: 200px;*/
+    /*width: 150px;*/
+    /*width: 10vw;*/
+    /*width: 50%;*/
+    /*background-color: var(--vc-clr-primary);*/
+    /*color: var(--vc-clr-white);*/
+    /*font-size: 20px;*/
+    /*border-radius: 8px;*/
+    /*display: flex;*/
+    /*justify-content: center;*/
+    /*align-items: center;*/
 }
 </style>

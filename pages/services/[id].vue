@@ -48,11 +48,11 @@
         <div class="text-center">
           <!-- Comment -->
           <p class="text-secondary">
-            Testimonial message
+            {{comments.comment}}
           </p>
           <!-- Author -->
           <p class="font-bold text-secondary">
-            <span>Maria</span>.<span>37</span>
+            <span>{{comments.name}}</span>.<span>{{comments.age}}</span>
           </p>
         </div>
       </div>
@@ -81,10 +81,22 @@ interface Service {
   testimonial: string
   pic: string
 }
-
+interface Comment {
+  id: number
+  name: string
+  age: number,
+  comment: string,
+}
+// Function to get a random element from the array
+function getRandomElement(arr) {
+  const randomIndex = Math.floor(Math.random() * arr.length);
+  return arr[randomIndex];
+}
 const route = useRoute()
 const id = parseInt(route.params.id as string, 10)
 const services = ref<Service[]>([])
+// const comments = ref<Comment[]>([])
+const comments = ref<{ [key: string]: Comment }>({});
 
 // Fetches service data
 const fetchServices = async () => {
@@ -93,7 +105,14 @@ const fetchServices = async () => {
     services.value = data.value.data
   }
 }
+const fetchComment = async () => {
+  const { data } = await useFetch<{ data: Comment[] }>(`/api/testimonial?serviceID=${id}`)
+  if (data.value) {
+    comments.value = getRandomElement(data.value.data)
+  }
+}
 fetchServices()
+fetchComment()
 
 // Sets page title
 const service = computed(() => {

@@ -41,7 +41,7 @@
               :src="service.pic"
               :alt=" 'This image represents the ' + service.name + ' service'"
               class="w-full h-auto object-cover"
-            >
+            />
           </div>
         </div>
         <!-- Testimonial -->
@@ -96,12 +96,14 @@ const route = useRoute()
 const id = parseInt(route.params.id as string, 10)
 const services = ref<Service[]>([])
 const comment = ref<{ [key: string]: Comment }>({});
+const service = ref<{ [key: string]: Service }>({});
 
 // Fetches service data
 const fetchServices = async () => {
-  const { data } = await useFetch<{ data: Service[] }>('/api/service')
+  const { data } = await useFetch<{ data: Service[] }>(`/api/service?id=${id}`)
   if (data.value) {
-    services.value = data.value.data
+    service.value = data.value.data[0]
+    useHead({ title: service.value.name })
   }
 }
 const fetchComment = async () => {
@@ -113,12 +115,4 @@ const fetchComment = async () => {
 fetchServices()
 fetchComment()
 
-// Sets page title
-const service = computed(() => {
-  const foundService = services.value.find(e => e.id === id)
-  if (foundService) {
-    useHead({ title: foundService.name })
-  }
-  return foundService
-})
 </script>

@@ -1,168 +1,103 @@
 <template>
-  <div class="flex justify-center px-6 py-3">
-    <div class="text-center">
-      <!-- Title -->
-      <h1 class="font-rosamila text-5xl text-primary mb-1">
-        People
-      </h1>
-      <!-- Subtitle -->
-      <h2 class="text-secondary mb-4">
-        Meet our stunning team
-      </h2>
-      <Carousel
-        v-show="employees.length!=0 && !loading"
-        v-bind="settings"
-        :breakpoints="breakpoints"
-        class="md:max-w-6xl mx-auto"
-        :wrap-around="true"
-      >
-        <!-- Card -->
-        <Slide
-          v-for="item in employees"
-          :key="item.id"
-          class="py-8"
-        >
-          <NuxtLink
-            :to="`/people/${item.id}`"
-            class="sm:hover:animate-expand hover:cursor-pointer"
-          >
-            <div class="border border-primary bg-neutral rounded-xl mx-4 overflow-hidden shadow-md">
-              <!-- Image -->
-              <div class="relative w-full overflow-hidden">
-                <img
-                  :src="item.pic"
-                  :alt="`This is a picture of the employee called ${item.name}`"
-                  class="w-full h-auto object-cover"
-                >
-              </div>
-              <div class="p-4">
-                <h2 class="font-bold mb-1">
-                  {{ item.name }}
-                </h2>
-                <p class="text-secondary mb-4">
-                  {{ item.role }}
-                </p>
-                <DiscoverButton />
-              </div>
-            </div>
-          </NuxtLink>
-        </Slide>
-        <template #addons>
-          <!-- Arrows -->
-          <Navigation>
-            <template #next>
-              <div class="bg-neutral border border-primary rounded-full p-2 w-10 h-10 flex items-center justify-center shadow-md">
-                <PhosphorIconCaretRight
-                  :size="24"
-                  weight="bold"
-                  class="text-primary"
-                />
-              </div>
-            </template>
-            <template #prev>
-              <div class="bg-neutral border border-primary rounded-full p-2 w-10 h-10 flex items-center justify-center shadow-md">
-                <PhosphorIconCaretLeft
-                  :size="24"
-                  weight="bold"
-                  class="text-primary"
-                />
-              </div>
-            </template>
-          </Navigation>
-          <!-- Dots -->
-          <div class="flex w-full justify-center items-center">
-            <Pagination />
-          </div>
-        </template>
-      </Carousel>
+  <div class="w-full max-w-7xl mx-auto px-4 text-primary">
+    <div class="flex items-center justify-center py-4 mb-8 space-y-2">
+      <div class="text-center">
+        <!-- Title -->
+        <div class="font-rosamila md:text-5xl text-4xl">
+          Meet our amazing team
+        </div>
+        <!-- Subtitle -->
+        <div class="text-secondary-dark">
+          The Answer To Your Questions
+        </div>
+      </div>
     </div>
+    <Carousel  v-show="employees.length!=0 && !loading" v-bind="settings" :breakpoints="breakpoints" class="md:max-w-6xl mx-auto" :autoplay="2000" :wrap-around="true">
+      <Slide v-for="item in employees" :key="item.id">
+        <div class="carousel__item p-2 sm:p-0">
+          <div class="border border-primary lg:p-3 sm:p-0 pb-2 bg-white lg:ml-2 mr-2 relative">
+            <!-- avatar -->
+            <NuxtImg :src="item.pic"/>
+            <div class="">
+              <h2 class="text-lg font-semibold">{{item.name}}</h2>
+              <p class="text-base">{{item.role}}</p>
+              <NuxtLink :to="`/people/${item.id}`" class="bg-accent text-white px-4 py-2 mt-4 inline-block">
+                Details
+              </NuxtLink>
+            </div>
+          </div>
+        </div>
+      </Slide>
+      <template #addons>
+        <Navigation />
+        <Pagination />
+      </template>
+    </Carousel>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import DiscoverButton from '~/components/DiscoverButton.vue'
-
 useHead({
   title: 'People',
 })
 
 interface Employee {
-  id: number
-  pic: string
-  name: string
-  role: string
-  cv: string
-  service: any[]
-  project: any[]
+  id: number;
+  pic: string;
+  name: string;
+  role: string;
+  cv: string;
+  service: any[];
+  project: any[];
 }
-const settings = {
+let settings = {
   itemsToShow: 1,
   snapAlign: 'center',
 }
-const breakpoints = {
-  620: {
-    itemsToShow: 2,
-    snapAlign: 'start',
+let breakpoints = {
+  200: {
+    itemsToShow: 1,
+    snapAlign: 'center',
   },
-  830: {
+  // 700px and up
+  700: {
     itemsToShow: 3,
-    snapAlign: 'start',
+    snapAlign: 'center',
   },
+  // 1024 and up
   1024: {
     itemsToShow: 4,
     snapAlign: 'start',
   },
 }
-const loading = ref<boolean>(true)
+const loading = ref<boolean>(true);
 
 onMounted(() => {
-  loading.value = false
-})
+  loading.value = false;
+});
 
-const employees = ref<Employee[]>([])
+let employees = ref<Employee[]>([]);
 
-const { data } = await useFetch('/api/employee')
-employees.value = data.value.data
-console.log(employees.value)
+let {data} = await useFetch('/api/employee')
+employees.value = data.value.data;
+console.log(employees.value )
 </script>
 
 <style>
-.carousel__prev,
-.carousel__next {
-  position: absolute;
+@media (min-width: 1024px) {
+  .carousel__prev {
+    position: absolute;
+    transform: translateX(-100%);
+  }
+
+  .carousel__next {
+    position: absolute;
+    transform: translateX(100%);
+  }
 }
 
-.carousel__pagination {
-  display: flex;
-  width: fit-content;
-}
-
-.carousel__pagination-button {
-  display: block;
-  border: 0;
-  margin: 1px;
-  cursor: pointer;
-  padding: var(--vc-pgn-margin);
-  background: transparent;
-}
-
-.carousel__pagination-button::after {
-  display: block;
-  content: '';
-  width: var(--vc-pgn-size, 10px);
-  height: var(--vc-pgn-size, 10px);
-  border-radius: 2px; /* Rounded corners for squares */
-  background-color: rgb(161, 159, 185, 0.30);
-  transition: transform 0.3s ease; /* Smooth transition for rotation */
-}
-
-.carousel__pagination-button--active::after {
-  background-color: #2F2E41; /* Choose your desired active color */
-  transform: rotate(45deg); /* Rotate active square by 45 degrees */
-}
-
-@media (max-width: 619px) {
+@media (max-width: 700px) {
   .carousel__pagination {
     display: none;
   }

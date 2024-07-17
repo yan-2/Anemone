@@ -48,11 +48,11 @@
         <div class="text-center">
           <!-- Comment -->
           <p class="text-secondary">
-            {{comments.comment}}
+            {{comment.comment}}
           </p>
           <!-- Author -->
           <p class="font-bold text-secondary">
-            <span>{{comments.name}}</span>.<span>{{comments.age}}</span>
+            <span>{{comment.name}}</span>.<span>{{comment.age}}</span>
           </p>
         </div>
       </div>
@@ -95,8 +95,7 @@ function getRandomElement(arr) {
 const route = useRoute()
 const id = parseInt(route.params.id as string, 10)
 const services = ref<Service[]>([])
-// const comments = ref<Comment[]>([])
-const comments = ref<{ [key: string]: Comment }>({});
+const comment = ref<{ [key: string]: Comment }>({});
 
 // Fetches service data
 const fetchServices = async () => {
@@ -108,7 +107,7 @@ const fetchServices = async () => {
 const fetchComment = async () => {
   const { data } = await useFetch<{ data: Comment[] }>(`/api/testimonial?serviceID=${id}`)
   if (data.value) {
-    comments.value = getRandomElement(data.value.data)
+    comment.value = getRandomElement(data.value.data)
   }
 }
 fetchServices()

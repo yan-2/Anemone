@@ -51,7 +51,6 @@
 
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
-// Footer icons from Phosphoricons
 
 // Exports component
 defineOptions({ name: 'AnemoneFooter' })

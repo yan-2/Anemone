@@ -1,6 +1,6 @@
 <!-- HTML structure -->
 <template>
-  <div class="flex justify-center w-full mb-4">
+  <div class="flex justify-center w-full">
     <div
       :class="[
         'w-full max-w-[198px] hover:cursor-pointer text-neutral py-2 px-4 rounded-lg transition duration-300 text-center bg-accent hover:bg-accent/80 shadow-md',

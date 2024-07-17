@@ -5,10 +5,10 @@
     <div class="max-w-6xl rounded-2xl bg-neutral border border-primary shadow-md text-center">
       <div
         v-if="service"
-        class="p-12"
+        class="p-8"
       >
         <!-- Title -->
-        <h1 class="font-rosamila text-5xl text-primary mb-2">
+        <h1 class="font-rosamila text-5xl text-primary mb-1">
           {{ service.name }}
         </h1>
         <!-- Subtitle -->
@@ -36,10 +36,11 @@
             </p>
           </div>
           <!-- Image -->
-          <div class="flex justify-center">
+          <div class="flex justify-center max-w-sm mx-auto">
             <img
               :src="service.pic"
               :alt=" 'This image represents the ' + service.name + ' service'"
+              class="w-full h-auto object-cover"
             >
           </div>
         </div>
@@ -56,12 +57,9 @@
         </div>
       </div>
       <!-- Loading -->
-      <p
-        v-else
-        class="p-6"
-      >
-        Loading...
-      </p>
+      <div v-else>
+        <LoadingPlaceholder />
+      </div>
     </div>
   </div>
 </template>
@@ -71,6 +69,7 @@
 import { ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useHead } from '@vueuse/head'
+import LoadingPlaceholder from '~/components/LoadingPlaceholder.vue'
 
 interface Service {
   id: number

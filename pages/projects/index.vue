@@ -1,89 +1,51 @@
 <template>
-  <div class="flex justify-center px-6 py-3">
-    <div class="text-center">
-      <!-- Title -->
-      <h1 class="font-rosamila text-5xl text-primary mb-1">
-        Projects
-      </h1>
-      <!-- Subtitle -->
-      <h2 class="text-secondary mb-4">
-        How we make the difference
-      </h2>
-      <Carousel
-        v-show="projects.length!=0 && !loading"
-        v-bind="settings"
-        :breakpoints="breakpoints"
-        class="md:max-w-6xl mx-auto"
-        :wrap-around="true"
-      >
-        <Slide
-          v-for="item in projects"
-          :key="item.id"
-          class="py-8 text-left"
-        >
-          <NuxtLink
-            :to="`/projects/${item.id}`"
-            class="block h-full sm:hover:animate-expand hover:cursor-pointer"
-          >
-            <div class="border border-primary bg-neutral rounded-xl mx-4 overflow-hidden shadow-md flex flex-col h-full p-4">
-              <div class="flex-grow">
-                <h2 class="font-bold mb-1">
-                  {{ item.name }}
-                </h2>
-                <p class="text-secondary mb-4">
-                  {{ getFirstSentence(item.description) }}
-                </p>
-              </div>
-              <!-- Image -->
-              <div class="relative w-full mb-4">
-                <div class="max-w-[200px] m-auto">
-                  <img
-                    :src="item.pic"
-                    :alt="`This image represents the ${item.name} project`"
-                    class="w-full h-full object-cover"
-                  >
-                </div>
-              </div>
-              <DiscoverButton class="mt-auto" />
-            </div>
-          </NuxtLink>
-        </Slide>
-        <template #addons>
-          <!-- Arrows -->
-          <Navigation>
-            <template #next>
-              <div class="bg-neutral border border-primary rounded-full p-2 w-10 h-10 flex items-center justify-center shadow-md">
-                <PhosphorIconCaretRight
-                  :size="24"
-                  weight="bold"
-                  class="text-primary"
-                />
-              </div>
-            </template>
-            <template #prev>
-              <div class="bg-neutral border border-primary rounded-full p-2 w-10 h-10 flex items-center justify-center shadow-md">
-                <PhosphorIconCaretLeft
-                  :size="24"
-                  weight="bold"
-                  class="text-primary"
-                />
-              </div>
-            </template>
-          </Navigation>
-          <!-- Dots -->
-          <div class="flex w-full justify-center items-center">
-            <Pagination />
-          </div>
-        </template>
-      </Carousel>
+  <div class="w-full max-w-7xl mx-auto px-4 text-primary">
+    <div class="flex items-center justify-center py-4 mb-8 space-y-2">
+      <div class="text-center">
+        <!-- Title -->
+        <div class="font-rosamila md:text-5xl text-4xl">
+          Projects
+        </div>
+        <!-- Subtitle -->
+        <div class="text-secondary-dark">
+          How We Make A Difference
+        </div>
+      </div>
     </div>
+    <Carousel v-show="projects.length != 0 && !loading" v-bind="settings" :breakpoints="breakpoints" class="md:max-w-6xl mx-auto" :autoplay="2000" :wrap-around="true">
+      <Slide v-for="item in projects" :key="item.id">
+        <div class="carousel__item p-2 sm:p-0">
+          <div class="border border-primary lg:p-3 sm:p-0 pb-2 bg-white lg:ml-2 mr-2 relative box-equal-size">
+            <div class="text-left p-4">
+              <h2 class="text-lg font-semibold">{{ item.name }}</h2>
+              <p class="text-base">{{ getFirstSentence(item.description) }}</p>
+            </div>
+            <div class="flex justify-center p-4">
+              <NuxtImg
+              :src="item.pic"
+              class="carousel-image"
+              :alt=" 'This image represents the ' + item.name + ' project'"
+
+              />
+            </div>
+            <div>
+              <NuxtLink :to="`/projects/${item.id}`" class="bg-accent text-white px-4 py-2 mt-4 inline-block">
+                Discover
+              </NuxtLink>
+            </div>
+          </div>
+        </div>
+      </Slide>
+      <template #addons>
+        <Navigation />
+        <Pagination />
+      </template>
+    </Carousel>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import DiscoverButton from '~/components/DiscoverButton.vue'
-
 useHead({
   title: 'Projects',
 })
@@ -95,38 +57,80 @@ interface Project {
   pic: string
 }
 
-const settings = {
+let settings = {
   itemsToShow: 1,
   snapAlign: 'center',
 }
-const breakpoints = {
-  620: {
-    itemsToShow: 2,
-    snapAlign: 'start',
+let breakpoints = {
+  200: {
+    itemsToShow: 1,
+    snapAlign: 'center',
   },
-  830: {
+  // 700px and up
+  700: {
     itemsToShow: 3,
-    snapAlign: 'start',
+    snapAlign: 'center',
   },
+  // 1024 and up
   1024: {
     itemsToShow: 4,
     snapAlign: 'start',
   },
 }
-const loading = ref<boolean>(true)
+const loading = ref<boolean>(true);
 
 onMounted(() => {
-  loading.value = false
-})
+  loading.value = false;
+});
 
-const projects = ref<Project[]>([])
+let projects = ref<Project[]>([]);
 
-const { data } = await useFetch('/api/project')
-projects.value = data.value.data
+let { data } = await useFetch('/api/project')
+projects.value = data.value.data;
 console.log(projects.value)
 
 const getFirstSentence = (text: string): string => {
-  const match = text.match(/([^.!?]+[.!?]+)/)
-  return match ? match[0] : text
+  const match = text.match(/([^.!?]+[.!?]+)/);
+  return match ? match[0] : text;
 }
 </script>
+
+<style>
+.carousel__item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.box-equal-size {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.carousel-image {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (min-width: 1024px) {
+  .carousel__prev {
+    position: absolute;
+    transform: translateX(-100%);
+  }
+
+  .carousel__next {
+    position: absolute;
+    transform: translateX(100%);
+  }
+}
+
+@media (max-width: 700px) {
+  .carousel__pagination {
+    display: none;
+  }
+}
+</style>
+

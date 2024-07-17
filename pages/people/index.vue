@@ -34,7 +34,7 @@
                               class="w-full h-auto object-cover"
                           >
                       </div>
-                      <div class="info-container md:p-4">
+                      <div class="info-container p-4">
                           <h2 class="font-bold md:mb-1">
                               {{ item.name }}
                           </h2>

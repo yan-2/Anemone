@@ -16,9 +16,9 @@
         class="min-w-2/3 translate-y-2 z-20"
       >
       <!-- Splash information box -->
-      <div class="max-w-xl p-8 z-10 rounded-2xl bg-neutral border border-primary shadow-md text-center">
+      <div class="max-w-xl p-6 z-10 rounded-2xl bg-neutral border border-primary shadow-md text-center">
         <!-- Title -->
-        <h1 class="font-rosamila text-5xl text-primary mb-2">
+        <h1 class="font-rosamila text-5xl text-primary mb-1">
           Anemone
         </h1>
         <!-- Subtitle -->
@@ -27,8 +27,8 @@
         </h2>
         <p class="text-primary mb-8">
           Hello stranger!<br>
-          Whether you're encountering challenges or seeking support,
-          remember that you are not alone.<br>
+          Whether you're facing challenges or seeking support,
+          remember that you are never alone.<br>
           Join us in our mission to empower women or let us help you.
         </p>
         <RequestButton />

@@ -1,6 +1,6 @@
 <template>
   <div class="sm:hidden">
-    <!-- Hamburger -->
+    <!-- Hamburger Button -->
     <button
       class="text-primary dark:text-primary-dark focus:outline-none z-50 relative"
       @click="toggleMenu"

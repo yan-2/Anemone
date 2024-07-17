@@ -4,11 +4,11 @@
       v-if="!messageSubmitted"
       class="flex flex-col max-w-3xl w-full rounded-2xl"
     >
-      <h1 class="font-rosamila text-5xl text-primary mb-2 text-center">
+      <h1 class="font-rosamila text-5xl text-primary mb-1 text-center">
         Request
       </h1>
       <h2 class="text-secondary mb-8 text-center">
-        Anemone at your rescue
+        Anemone At Your Rescue
       </h2>
       <form @submit.prevent="handleSubmit">
         <div class="px-4 py-2 mb-4 rounded-lg border border-primary shadow-md bg-neutral">
@@ -17,8 +17,8 @@
             class="w-full focus:outline-none focus:cursor-pointer"
           >
             <option
-              value=""
               disabled
+              value=""
             >
               Request Class
             </option>
@@ -31,7 +31,7 @@
             </option>
           </select>
         </div>
-        <div class="flex flex-col w-full rounded-lg border shadow-md bg-neutral border-primary mb-8 overflow-hidden">
+        <div class="flex flex-col w-full rounded-xl border shadow-md bg-neutral border-primary mb-8 overflow-hidden">
           <textarea
             v-model="message"
             placeholder="Tell us what is going on"
@@ -39,7 +39,7 @@
             class="w-full p-4 resize-none min-h-60 h-fit mb-4 focus:outline-none"
             @input="updateCharCount"
           />
-          <div class="flex items-center justify-between mb-4 mx-4">
+          <div class="flex items-end justify-between mb-4 mx-4">
             <div class="flex flex-col items-start">
               <span
                 class="px-4 py-1 rounded-lg"
@@ -57,10 +57,10 @@
         <div class="flex justify-center w-full">
           <button
             type="submit"
-            class="w-full max-w-[256px] py-2 px-4 rounded-lg transition duration-300"
+            class="w-full max-w-[198px] hover:cursor-pointer text-neutral py-2 px-4 rounded-lg transition duration-300 text-center shadow-md"
             :class="[
               isFormValid
-                ? 'bg-primary text-neutral hover:bg-primary/85 hover:cursor-pointer'
+                ? 'bg-accent hover:bg-accent/80 text-neutral hover:cursor-pointer'
                 : 'bg-primary/20 text-neutral',
             ]"
             :disabled="!isFormValid"
@@ -78,13 +78,13 @@
         Thanks
       </h1>
       <h2 class="text-secondary mb-8 text-center">
-        You have done the first step to a brighter future<br>
+        You have done the first step towards a brighter future<br>
         Give us a little time to analyze your request
       </h2>
       <div class="flex justify-center w-full">
         <NuxtLink
           to="/"
-          class="w-full max-w-[256px] bg-primary hover:bg-primary/85 hover:cursor-pointer text-neutral py-2 px-4 rounded-lg transition duration-300 text-center"
+          class="w-full max-w-[198px] bg-accent hover:bg-accent/80 text-neutral hover:cursor-pointer py-2 px-4 rounded-lg transition duration-300 text-center shadow-md"
         >
           Homepage
         </NuxtLink>
@@ -93,6 +93,7 @@
   </div>
 </template>
 
+<!-- Typescript code -->
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 
@@ -112,6 +113,7 @@ const updateCharCount = () => {
   chars.value = message.value.length
 }
 
+// Manages priority chip colors
 const levelText = computed(() => {
   const levelMap: Record<string, string> = {
     booking: 'Low',
@@ -119,7 +121,7 @@ const levelText = computed(() => {
     assistance: 'Medium',
     rescue: 'High',
   }
-  return levelMap[requestType.value] || 'Undefined'
+  return levelMap[requestType.value] || 'Priority'
 })
 
 const levelColor = computed(() => {
@@ -142,10 +144,12 @@ const levelBgColor = computed(() => {
   return bgColors[requestType.value] || 'bg-secondary/20'
 })
 
+// Checks form validity
 const isFormValid = computed(() => {
   return requestType.value !== '' && message.value.trim() !== ''
 })
 
+// Simulates message submission
 const handleSubmit = () => {
   if (isFormValid.value) {
     console.log('Message submission simulated!')

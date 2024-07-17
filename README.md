@@ -4,7 +4,7 @@ For this project we used the following technology stack
 |:--|:--|
 |`nuxt3.js` _based on Vue3_|Frontend|
 |`less.css`|Post CSS handler|
-|`bootstrap.css`|Adaptive screens|
+|`tailwind.css`|Adaptive screens|
 |`Supabase`|Database|
 |`Vercel`|Cloud services|
 

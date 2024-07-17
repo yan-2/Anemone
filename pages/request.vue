@@ -57,7 +57,7 @@
         <div class="flex justify-center w-full">
           <button
             type="submit"
-            class="w-full max-w-[198px] hover:cursor-pointer text-neutral py-2 px-4 rounded-lg transition duration-300 text-center shadow-md"
+            class="w-full max-w-[198px] hover:cursor-pointer text-neutral py-2 px-4 rounded-lg transition duration-300 text-center"
             :class="[
               isFormValid
                 ? 'bg-accent hover:bg-accent/80 text-neutral hover:cursor-pointer'

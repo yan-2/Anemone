@@ -5,18 +5,18 @@
     <div class="max-w-3xl rounded-2xl bg-neutral border border-primary shadow-md text-center">
       <div
         v-if="project"
-        class="p-12"
+        class="p-8"
       >
         <!-- Title -->
-        <h1 class="font-rosamila text-5xl text-primary mb-2">
+        <h1 class="font-rosamila text-5xl text-primary mb-1">
           {{ project.name }}
         </h1>
         <!-- Subtitle -->
         <h2 class="text-secondary mb-8">
-          {{ project.tag }}
+          {{ project.tag.charAt(0).toUpperCase() + project.tag.slice(1).toLowerCase() }}
         </h2>
         <!-- Project -->
-        <div class="grid grid-cols-1 md:grid-cols-[1.5fr_1fr] gap-12 w-full items-center">
+        <div class="grid grid-cols-1 md:grid-cols-[1.5fr_1fr] gap-8 w-full items-center">
           <!-- Description -->
           <div class="text-left self-start h-full">
             <h3 class="font-bold mb-1">

@@ -13,7 +13,7 @@
         </h1>
         <!-- Subtitle -->
         <h2 class="text-secondary mb-8">
-          {{ service.tag }}
+          {{ service.tag.charAt(0).toUpperCase() + service.tag.slice(1).toLowerCase() }}
         </h2>
         <!-- Service -->
         <div class="grid grid-cols-1 lg:grid-cols-[1.5fr_1.5fr_1.25fr] gap-12 w-full items-center mb-8">
@@ -41,19 +41,21 @@
               :src="service.pic"
               :alt=" 'This image represents the ' + service.name + ' service'"
               class="w-full h-auto object-cover"
-            />
+            >
           </div>
         </div>
         <!-- Testimonial -->
-        <div class="text-center">
-          <!-- Comment -->
-          <p class="text-secondary">
-            {{comment.comment}}
-          </p>
-          <!-- Author -->
-          <p class="font-bold text-secondary">
-            <span>{{comment.name}}</span>.<span>{{comment.age}}</span>
-          </p>
+        <div class="flex items-center justify-center w-full opacity-0 animate-faded">
+          <div class="max-w-[260px] sm:max-w-full text-center">
+            <!-- Comment -->
+            <p class="text-secondary mb-1">
+              {{ comment.comment }}
+            </p>
+            <!-- Author -->
+            <p class="font-bold text-secondary">
+              <span>{{ comment.name }}</span>.<span>{{ comment.age }}</span>
+            </p>
+          </div>
         </div>
       </div>
       <!-- Loading -->
@@ -84,26 +86,24 @@ interface Service {
 interface Comment {
   id: number
   name: string
-  age: number,
-  comment: string,
+  age: number
+  comment: string
 }
 // Function to get a random element from the array
 function getRandomElement(arr) {
-  const randomIndex = Math.floor(Math.random() * arr.length);
-  return arr[randomIndex];
+  const randomIndex = Math.floor(Math.random() * arr.length)
+  return arr[randomIndex]
 }
 const route = useRoute()
 const id = parseInt(route.params.id as string, 10)
 const services = ref<Service[]>([])
-const comment = ref<{ [key: string]: Comment }>({});
-const service = ref<{ [key: string]: Service }>({});
+const comment = ref<{ [key: string]: Comment }>({})
 
 // Fetches service data
 const fetchServices = async () => {
-  const { data } = await useFetch<{ data: Service[] }>(`/api/service?id=${id}`)
+  const { data } = await useFetch<{ data: Service[] }>('/api/service')
   if (data.value) {
-    service.value = data.value.data[0]
-    useHead({ title: service.value.name })
+    services.value = data.value.data
   }
 }
 const fetchComment = async () => {
@@ -115,4 +115,12 @@ const fetchComment = async () => {
 fetchServices()
 fetchComment()
 
+// Sets page title
+const service = computed(() => {
+  const foundService = services.value.find(e => e.id === id)
+  if (foundService) {
+    useHead({ title: foundService.name })
+  }
+  return foundService
+})
 </script>

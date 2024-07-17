@@ -3,7 +3,7 @@
   <div class="flex justify-center w-full">
     <NuxtLink
       to="/request"
-      class="w-full max-w-[198px] bg-action hover:bg-action/80 hover:cursor-pointer text-neutral py-2 px-4 rounded-lg transition duration-300 text-center shadow-md"
+      class="w-full max-w-[198px] bg-action hover:bg-action/80 hover:cursor-pointer text-neutral py-2 px-4 rounded-lg transition duration-300 text-center"
     >
       Request Help
     </NuxtLink>

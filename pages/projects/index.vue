@@ -96,6 +96,11 @@ const getFirstSentence = (text: string): string => {
 </script>
 
 <style>
+.carousel__pagination {
+  margin:0 auto;
+  margin-top:10px;
+}
+
 .carousel__item {
   display: flex;
   flex-direction: column;
